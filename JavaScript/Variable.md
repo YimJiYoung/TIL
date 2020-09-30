@@ -1,4 +1,4 @@
-### Variable hoisting
+## Variable hoisting
 
 변수 선언이 scope의 위쪽으로 옮겨지는 것을 의미한다. 
 
@@ -14,7 +14,7 @@ console.log(x); // 5
 
 첫번째 줄의 변수  `x`는 선언되기 전이므로 `Reference Error`가 떠야 하지만 변수 호이스팅으로 선언이 먼저 되었기 때문에 (선언은 되었지만 할당되지 않은) `undefined` 가 된다.
 
-### Function hoisting
+## Function hoisting
 
 **함수 표현식** ( Function expression) → 변수 호이스팅이 일어남 (선언부만 호이스팅됨)
 
@@ -45,7 +45,7 @@ var fnExpression = function() {
 }
 ```
 
-### let, const
+## let, const
 
 `var` : function-scope, 호이스팅 발생
 
