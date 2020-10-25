@@ -71,7 +71,9 @@ fn();
 
 →  의도되지 않은 호이스팅이나 스코프 범위, 재선언/할당으로 인한 side effect를 막기 위해  `var` 사용을 지양하자 !
 
-
+ <br>
+ <br>
+ 
 # Reference vs Value
 
 - `Primitive type` :  Number, String, Boolean, undefined, null ( **Pass by Value**)
@@ -88,7 +90,7 @@ var refCopy = reference;
 
 ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/81aa31f9-eec7-4d1f-bc14-1bbca157402c/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20201025%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20201025T041337Z&X-Amz-Expires=86400&X-Amz-Signature=4c3416348fa56498c957b9b3a0418d7f8da1701fafc1edef1157b39a69b26c26&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
 
-### Pure function
+## Pure function
 
 외부 scope에 영향을 미치지 않는 함수 → 외부 변수의 값을 바꿔서는 안된다 ! (side effect 방지)
 
@@ -96,7 +98,7 @@ primitive type을 parameter로 받는 경우(외부 변수도 또한 사용하�
 
 가장 간단한 deep copy :  `JSON.parse(JSON.stringify(object))`
 
-### Shallow copy vs Deep copy
+## Shallow copy vs Deep copy
 
 - `=` 연산을 통해 객체를 복사했을 때 새로운 객체를 생성하는 것이 아니라 원본 객체의 레퍼런스를 공유하게 된다! (주소값을 공유하게 된다) → Pass by Reference
 - **shallow copy** : 새로운 객체를 생성하여 원본 객체 내부의 자식 객체에 대한 레퍼런스 값을 가짐
@@ -107,7 +109,7 @@ primitive type을 parameter로 받는 경우(외부 변수도 또한 사용하�
 
     →복사된 객체의 변화가 원본 객체에 반영되지 않음
 
-### Immutable update
+## Immutable update
 Whenever your object would be mutated, don’t do it. Instead, create a changed copy of it. <br>
 **Shallow equality check** (Reference equality check)
 
