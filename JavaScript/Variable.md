@@ -115,3 +115,45 @@ Whenever your object would be mutated, don’t do it. Instead, create a changed 
 
 - 참조형 객체의 변경을 비교할때 쉽게 비교 가능 ( value equality의 경우 nested structure 비교할 때 재귀 작업 필요 → 시간복잡도 증가 )
 - 리액트에서는 리렌더링 필요성을 판단할 때 얕은 비교를 활용
+
+<br/>
+<br/>
+
+## Closure
+
+> A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function’s scope from an inner function
+
+- 함수와 그 함수가 선언됐을 때의 렉시컬 환경(Lexical environment)과의 조합
+- inner function에서 outer function의 스코프에 접근할 수 있는 것
+
+```javascript
+function makeAdder(baseNum) {
+  return function(num) {
+    return baseNum + num;
+  };
+}
+const add5 = makeAdder(5)
+// makeAdder가 return된 이후에도 내부 함수인 add5에서 baseNum(5)에 접근 가능
+add5(10) // 15
+add5(20) // 25
+```
+
+### Lexical scope
+
+```jsx
+var x = 1;
+
+function foo() {
+  var x = 10;
+  bar();
+}
+
+function bar() {
+  console.log(x);
+}
+
+foo(); // 1
+bar(); // 1
+```
+- 렉시컬 스코프는 함수를 어디서 호출하는지가 아니라 어디에 선언하였는지에 따라 상위 스코프가 결정된다
+- 🔗 참고 : [스코프](https://poiemaweb.com/js-scope#7-%EB%A0%89%EC%8B%9C%EC%BB%AC-%EC%8A%A4%EC%BD%94%ED%94%84)
