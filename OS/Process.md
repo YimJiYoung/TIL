@@ -20,3 +20,34 @@
 - `Ready`: CPU에서 실행되기를 기다리는 상태
 - `Wait`: 요청한 event(ex. I/O)를 기다리는 상태
 - `Suspended`: 외부적인 이유로 프로세스의 수행이 정지된 상태(ex. Swap out)
+
+### Process Control Block
+
+![pcb](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter3/3_03_PCB.jpg)
+
+OS에서 각 프로세스를 관리하기 위해 필요한 정보를 저장하기 위한 자료구조
+
+1. OS 관리 상 필요 정보
+    - Process state, Process ID
+    - scheduling information, priority
+2. CPU 수행 관련 레지스터 값
+    - Program counter, registers
+3. 메모리 관련
+    - Process address space(code, stack, data)의 위치 정보
+4. 파일 관련
+    - Open file descriptors
+
+### Context Switch
+
+![context_switch](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter3/3_04_ProcessSwitch.jpg)
+
+- 실행 중인 프로세스가 바뀌면 context switch가 발생한다.
+- 실행 중이던 프로세스의 PC, registers 등의 정보 PCB에 저장 → 실행할 프로세스의 PCB에서 정보 불러옴
+- user mode → kernel mode로 바뀌는 것은 context switch가 아님 (이 경우도 CPU 수행 정보를 PCB에 저장하게 되지만 context swtich보다는 오버헤드가 적다)
+
+### Thread
+경량 프로세스(Light weight process)라고 불리기도 하며, 프로세스 내의 CPU 수행 단위를 의미한다.
+![thread](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter4/4_01_ThreadDiagram.jpg)
+#### 장점 :
+- 스레드를 사용하면 사용자에 대한 응답성을 증가시킬 수 있다. (ex. 하나의 thread에서 waiting 상태인 경우에 다른 thread를 실행하여 빠른 처리를 할 수 있다.)
+- 프로세스 자원과 메모리를 공유할 수 있다  → 자원을 공유하기 때문에 경제적이다.
