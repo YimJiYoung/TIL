@@ -53,7 +53,7 @@ OS에서 각 프로세스를 관리하기 위해 필요한 정보를 저장하�
 - 스레드를 사용하면 사용자에 대한 응답성을 증가시킬 수 있다. (ex. 하나의 thread에서 waiting 상태인 경우에 다른 thread를 실행하여 빠른 처리를 할 수 있다.)
 - 프로세스 자원과 메모리를 공유할 수 있다  → 자원을 공유하기 때문에 경제적이다.
 
-#### User-level thread vs Kernel-level thread
+### User-level thread vs Kernel-level thread
 
 **user level thread (supported by library)**
 
