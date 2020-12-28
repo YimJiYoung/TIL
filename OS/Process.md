@@ -46,8 +46,21 @@ OS에서 각 프로세스를 관리하기 위해 필요한 정보를 저장하�
 - user mode → kernel mode로 바뀌는 것은 context switch가 아님 (이 경우도 CPU 수행 정보를 PCB에 저장하게 되지만 context swtich보다는 오버헤드가 적다)
 
 ### Thread
-경량 프로세스(Light weight process)라고 불리기도 하며, 프로세스 내의 CPU 수행 단위를 의미한다.
+- 경량 프로세스(Light weight process)라고 불리기도 하며, 프로세스 내의 CPU 수행 단위를 의미한다.
+- 각 thread마다 cpu 관련 정보(PC, registers)와 stack 별도로 가진다.
 ![thread](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter4/4_01_ThreadDiagram.jpg)
 #### 장점 :
 - 스레드를 사용하면 사용자에 대한 응답성을 증가시킬 수 있다. (ex. 하나의 thread에서 waiting 상태인 경우에 다른 thread를 실행하여 빠른 처리를 할 수 있다.)
 - 프로세스 자원과 메모리를 공유할 수 있다  → 자원을 공유하기 때문에 경제적이다.
+
+#### User-level thread vs Kernel-level thread
+
+**user level thread (supported by library)**
+
+- user application에서 사용되는 thread
+- kernel은 user level thread의 존재를 알지 못함 -> 실제로 thread가 실행되기 위해서는 kernel level thread에 매핑되어야 함
+
+**kernel level thread (supported by kernel)**
+
+- cpu에 할당되는 스케쥴링의 대상
+- user level thread 실행
