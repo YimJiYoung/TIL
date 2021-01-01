@@ -60,3 +60,35 @@ obj.print();
 ```
 
 위와 같이 생성자 함수의 `prototype` 에 메서드를 정의하여 상속을 구현할 수 있다. 해당 함수를 통해 만들어진 객체(obj)는 생성자 함수의 프로토타입에 정의되었던 함수 `print`에 접근하여 사용할 수 있다. 이는 생성자 함수 내부에서 `this.print`로 메서드를 정의하는 것보다 메모리 면에서 효율적이다. (`prototype`은 생성된 모든 객체에서 공유되지만 `this.print`로 정의하면 생성된 객체마다 자신의 `print` 함수를 갖게 되기 때문에 비효율적임 )
+
+### Object.create()
+
+객체의 프로토타입을 수동으로 설정하여 생성할 수 있도록 하는 함수. 파라미터로 넘겨진 객체를 프로토타입으로 설정한 새로운 객체를 반환한다. 상위 클래스를 확장하는 하위 클래스를 구현할 때 사용된다.
+
+```jsx
+// Shape - 상위클래스
+function Shape() {
+  this.x = 0;
+  this.y = 0;
+}
+
+// 상위클래스 메서드
+Shape.prototype.move = function(x, y) {
+  this.x += x;
+  this.y += y;
+  console.info('Shape moved.');
+};
+
+// Rectangle - 하위클래스
+function Rectangle() {
+  Shape.call(this); // super 생성자 호출.
+}
+
+// 하위클래스는 상위클래스를 확장
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
+
+var rect = new Rectangle();
+```
+
+참고 : [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
