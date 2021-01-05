@@ -16,6 +16,7 @@
 
 ### Process State
 ![process state](https://www.cs.uic.edu/~jbell/CourseNotes/OperatingSystems/images/Chapter3/3_02_ProcessState.jpg)
+![process state2](https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile28.uf.tistory.com%2Fimage%2F1260995050E18C8C24C034)
 - `Running` : CPU에서 실행 중인 상태
 - `Ready`: CPU에서 실행되기를 기다리는 상태
 - `Wait`: 요청한 event(ex. I/O)를 기다리는 상태
