@@ -65,3 +65,34 @@ OS에서 각 프로세스를 관리하기 위해 필요한 정보를 저장하�
 
 - cpu에 할당되는 스케쥴링의 대상
 - user level thread 실행
+
+### Process Creation
+
+부모 프로세스가 자식 프로세스를 복제 생성
+
+- fork() : 새로운 프로세스 복제 생성, 주소 공간 할당.
+- exec(): 기존의 프로세스에서 새로운 프로그램 실행.
+- wait(): 자식 프로세스가 종료될 때까지 기다린다 (waiting 상태) / ex. 입력 프롬프트
+- exit(): 프로세스 자발적으로 종료
+    - 비자발적인 종료: 부모 프로세스가 자식 프로세스 강제 종료 (ex. 한계치 넘어서는 자원 요청), kill, 부모 프로세스가 먼저 종료되는 경우(부모 프로세스가 종료되기 전에 자식 프로세스 종료)
+
+## IPC (Interprocess Communication)
+
+프로세스는 각자의 주소 공간을 가지고 독립적으로 수행되므로 원칙적으로 다른 프로세스의 수행에 영향을 미치지 못함
+
+![IPC](https://networkencyclopedia.com/wp-content/uploads/2019/09/inter-process-communications-models.png)
+
+### Message passing
+
+커널을 통해 메시지 전달
+
+방식
+- Direct: 통신하려는 프로세스의 이름 명시적으로 표시
+- Indirect: mailbox(또는 port)를 통해 메시지 간접 전달
+
+### Shared memory
+
+다른 프로세스 간에도 일부 주소 공간 공유
+
+- 장점: 커널을 거치지 않고 통신하므로 Message passing보다 빠르다.
+- 단점: 여러 프로세스에서 동시에 같은 데이터에 접근할 경우에 대한 처리 필요
