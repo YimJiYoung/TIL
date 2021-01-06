@@ -105,3 +105,23 @@ logThisAndArguments.apply(obj, ['First arg', 'Second arg']);
 fnBound();
 // this -> { val: 'Hello!' }
 ```
+
+### DOM event handler
+
+함수가 DOM의 이벤트 핸들러로 사용될 때 `this`는 어떤 값으로 설정될까?
+
+→ this는 이벤트가 적용되는 엘리멘트로 설정된다 
+
+참고 : [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
+
+```jsx
+// 화살표 함수는 this를 생성될 때 시점에 결정 -> window
+button.addEventListener('click', () => {
+  console.log(this === window);  // true
+});
+
+// 일반 함수의 경우 event handler의 this는 이벤트를 등록하는 element로 설정된다
+button.addEventListener('click', function() {
+  console.log(this === button); // true
+});
+```
