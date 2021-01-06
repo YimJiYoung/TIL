@@ -92,3 +92,21 @@ var rect = new Rectangle();
 ```
 
 참고 : [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+
+### Constructor
+
+모든 함수의 prototype은 자기 자신을 가리키는 constructor를 갖고 있다. 이 constructor의 의미는 뭘까 ?
+
+```jsx
+function Fn() {}
+console.log(Fn.prototype.constructor === Fn); // true
+```
+
+해당 함수를 통해 생성된 객체는 prototype chain을 통해 constructor 속성에 접근할 수 있고 이를 통해 객체는 자신을 만든 생성자 함수가 뭐였는지 확인할 수 있다.
+
+```jsx
+function Fn(){}
+const obj = new Fn();
+
+console.log(obj.constructor); // [Function: Fn]
+```
