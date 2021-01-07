@@ -73,5 +73,76 @@
 
 - 이제 데이터와 렌더러 프로세스가 준비되었으므로 내비게이션을 실행하도록 브라우저 프로세스에서 렌더러 프로세스로 IPC 메시지를 전송한다. 또한 렌더러 프로세스가 HTML 데이터를 계속 수신할 수 있도록 브라우저 프로세스는 데이터 스트림을 전달한다. 렌더러 프로세스에서 내비게이션이 실행되었다는 것을 브라우저 프로세스가 확인하고 나면 내비게이션이 완료되고 문서 로딩 단계가 시작된다.
 
+
+## 렌더링 과정
+
+### 렌더러 프로세스
+
+![](https://d2.naver.com/content/images/2019/04/helloworld-201904-sangwoo-ko_3-01.png)
+
+렌더러 프로세스는 브라우저로 전송된 대부분의 코드를 처리하는 메인 스레드를 갖고 있다. 웹 워커나 서비스 워커를 사용하는 경우에는 워커 스레드가 일부 JavaScript 코드를 처리한다.
+
+- [web worker](https://developer.mozilla.org/ko/docs/Web/API/Web_Workers_API) : 메인 스레드와 별도의 백그라운드 스레드에서 스크립트 연산 수행.
+
+### HTML 파싱 → DOM 구축
+
+렌더러 프로세스가 HTML 데이터를 수신하기 시작하면  메인 스레드는 문자열(HTML)을 파싱해서 DOM(document object model)으로 변환하기 시작한다. DOM은 HTML 문서를 객체로 표현한 것이며 JavaScript가 HTML요소에 접근할 수 있도록 하는 API이다. 여러 태그와의 관계를 나타내기 위해 다음과 같은 트리 구조로 연결된다.
+
+![](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/dom-tree.png?hl=ko)
+
+**JavaScript가 파싱을 막을 수 있다** 
+
+`<script>` 태그를 만나면 HTML 문서의 파싱을 중지하고 JavaScript 코드를 로딩하고 파싱해 실행한다. 이는 JavaScript가 DOM 구조를 바꿀 수 있기 때문이다. 만약 파싱을 막고 싶지 않다면 script 태그에 defer/async 속성을 이용하여 문서 파싱이 완료된 후에 또는 비동기적으로 JavaScript 코드를 로딩할 수 있다.
+
+### CSS 파싱 → CSSOM
+
+HTML 파싱과 같이 CSS를 파싱하여 CSSOM(CSS Object Model)으로 변환한다. CSSOM은 다음과 같은 트리 구조를 갖는다. DOM 노드의 최종 스타일을 계산할 때 해당 노드의 가장 일반적인 규칙(예: body 요소의 하위인 경우 모든 body 스타일 적용)으로 시작한 후 더욱 구체적인 규칙을 적용하는 방식으로, 즉 '하향식'으로 규칙을 적용하는 방식으로 스타일을 계산한다.
+
+![](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/cssom-tree.png?hl=ko)
+
+### 렌더 트리 생성
+
+CSSOM 및 DOM 트리는 결합하여 렌더링 트리를 형성한다. 렌더링 트리는 표시되는 각 요소의 레이아웃을 계산하는데 사용되며 픽셀을 화면에 렌더링하는 페인트 프로세스의 입력이 된다.
+
+- DOM 및 CSSOM 트리는 결합되어 렌더링 트리를 형성한다.
+- 렌더링 트리에는 페이지를 렌더링하는 데 필요한 노드만 포함된다. (예: `{ display: none }` 인 요소 제외)
+
+![](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/render-tree-construction.png?hl=ko)
+
+### Layout (Reflow)
+
+이제 렌더러 프로세스가 문서의 구조와 각 노드의 스타일을 알지만 페이지를 렌더링하기에는 충분하지 않다.
+
+ viewport 내에서 노드의 정확한 위치와 크기를 계산하는 '레이아웃' 단계가 필요하다. 페이지에서 각 객체의 정확한 크기와 위치를 파악하기 위해 브라우저는 렌더링 트리의 루트에서 시작하여 렌더링 트리를 순회한다.
+
+- 레이아웃은 각 객체의 정확한 위치(x, y 좌표) 및 박스 영역의 크기를 계산한다.
+
+### 전역 배치와 점증 배치
+
+**전역 배치 -동기적**
+
+- 글꼴 크기 변경과 같이 모든 렌더러에 영향을 주는 전역 스타일 변경
+- 화면 크기(viewport) 변경에 의한 결과
+
+**점증 배치 -비동기적**
+
+- 다시 배치할 필요가 있는 변경 요소 또는 추가된 요소가 있을 때 - 해당 요소와 자식 요소들만 새로 배치 작업
+
+### Paint (Repaint)
+
+이제 표시되는 노드와 해당 노드의 계산된 스타일 및 기하학적 형태까지 파악했으므로, 마지막으로 렌더링 트리의 각 노드를 화면의 실제 픽셀로 변환하는 페인트 작업이 수행된다. 페인트 단계에서 메인 스레드는 페인트 기록(paint record)을 생성하기 위해 레이아웃(렌더링) 트리를 순회한다. 페인트 기록은 '배경 먼저, 다음은 텍스트, 그리고 직사각형'과 같이 페인팅 과정을 기록한 것이다. 이 순서를 토대로 화면의 픽셀로 변환한다.
+
+### 렌더링 파이프라인을 갱신하는 데는 많은 비용이 든다
+
+각 단계에서 이전 단계의 결과물을 사용하기 때문에 레이아웃 트리에서 변경이 생겨 문서의 일부가 영향을 받으면 페인팅 순서도 새로 생성해야 한다. 최적의 렌더링 성능을 얻기 위해서는 이러한 단계 각각을 최적화하는 것이 중요하다.
+
+![](https://d2.naver.com/content/images/2019/04/helloworld-201904-sangwoo-ko_3-10.gif)
+
+### 동적 변경
+
+브라우저는 변경에 대해 가능한 한 최소한의 동작으로 반응하려고 노력한다. 그렇기 때문에 요소의 색깔이 바뀌면 해당 요소의 리페인팅만 발생한다. 요소의 위치가 바뀌면 요소와 자식 그리고 형제의 리페인팅과 재배치가 발생한다. DOM 노드를 추가하면 노드의 리페인팅과 재 배치가 발생한다. "html" 요소의 글꼴 크기를 변경하는 것과 같은 큰 변경은 캐시를 무효화하고 트리 전체의 배치와 리페인팅이 발생한다.
+
 ## 🔗 참고
-[최신 브라우저의 내부 살펴보기 시리즈](https://d2.naver.com/helloworld/2922312)
+- [최신 브라우저의 내부 살펴보기 시리즈](https://d2.naver.com/helloworld/2922312)
+- https://d2.naver.com/helloworld/59361
+- https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=ko
