@@ -66,7 +66,7 @@ finally(onFinally) 메서드는 마찬가지로 Promise 객체를 반환하며, 
 
  Promise.all(iterable)에서 iterable 내의 모든 Promise가 resolve하면 resolve하고, 어떤 하나가 reject하면 즉시 reject하는 프로미스를 반환합니다.
  
- ### 🤔
+ ### executor 함수 실행 시점
 - Promise를 생성할 때 넘겨주는 executor 함수는 언제 실행될까 ? -> 즉시 실행된다 ! 따라서 executor 함수 내에 동기적인 코드가 있으면 여전히 동기적으로 동작함. setTimeout이나 다른 비동기 함수를 써서 비동기적으로 동작하게 하는 것이 올바른 사용 방법이다.
 ```
 function doSomethingAsynchronous() {
@@ -83,3 +83,4 @@ console.log("b");
 // a
 // b
 ```
+참고: https://stackoverflow.com/questions/42118900/when-is-the-body-of-a-promise-executed
