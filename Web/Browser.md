@@ -86,7 +86,7 @@
 
 ### HTML 파싱 → DOM 구축
 
-렌더러 프로세스가 HTML 데이터를 수신하기 시작하면  메인 스레드는 문자열(HTML)을 파싱해서 DOM(document object model)으로 변환하기 시작한다. DOM은 HTML 문서를 객체로 표현한 것이며 JavaScript가 HTML요소에 접근할 수 있도록 하는 API이다. 여러 태그와의 관계를 나타내기 위해 다음과 같은 트리 구조로 연결된다.
+렌더러 프로세스가 HTML 데이터를 수신하기 시작하면  메인 스레드는 문자열(HTML)을 파싱해서 DOM(document object model)으로 변환하기 시작한다. DOM은 HTML 문서를 객체로 표현한 것이며 JavaScript가 HTML 태그에 접근할 수 있도록 하는 API이다. 여러 태그와의 관계를 나타내기 위해 계층적인 구조인 트리 구조를 사용한다.
 
 ![](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/images/dom-tree.png?hl=ko)
 
