@@ -157,3 +157,4 @@ CSSOM 및 DOM 트리는 결합하여 렌더링 트리를 형성한다. 렌더링
 - [최신 브라우저의 내부 살펴보기 시리즈](https://d2.naver.com/helloworld/2922312)
 - https://d2.naver.com/helloworld/59361
 - https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=ko
+- https://developers.google.com/web/fundamentals/performance/rendering?hl=ko
