@@ -132,11 +132,20 @@ CSSOM 및 DOM 트리는 결합하여 렌더링 트리를 형성한다. 렌더링
 
 ### Paint (Repaint)
 
-이제 표시되는 노드와 해당 노드의 계산된 스타일 및 기하학적 형태까지 파악했으므로, 마지막으로 렌더링 트리의 각 노드를 화면의 실제 픽셀로 변환하는 페인트 작업이 수행된다. 페인트 단계에서 메인 스레드는 페인트 기록(paint record)을 생성하기 위해 레이아웃(렌더링) 트리를 순회한다. 페인트 기록은 '배경 먼저, 다음은 텍스트, 그리고 직사각형'과 같이 페인팅 과정을 기록한 것이다. 이 순서를 토대로 화면의 픽셀로 변환한다.
+이제 표시되는 노드와 해당 노드의 계산된 스타일 및 기하학적 형태까지 파악했으므로, 마지막으로 렌더링 트리의 각 노드를 화면의 실제 픽셀로 변환하는 그리기 작업이 수행된다. 이런 그리기 작업은 레이어 별로 수행되는데, 레이어는 z-index나 will-change와 같은 속성에 따라서 분리된다. 레이어로 분리할 때의 장점은 부분적인 그리기 작업이 필요할 때 전체 화면을 다시 그리는 것이 아니라 해당 레이어만 그리면 되기 때문에 성능적으로 이점이 있다. 그렇다고 레이어를 지나치게 세분화하는 것은 메모리에 부담을 주고 오히려 성능이 저하될 수 있다.
 
+### Composite
+
+레이어를 순서대로 화면에 그린다.
 ### 렌더링 파이프라인을 갱신하는 데는 많은 비용이 든다
 
 각 단계에서 이전 단계의 결과물을 사용하기 때문에 레이아웃 트리에서 변경이 생겨 문서의 일부가 영향을 받으면 페인팅 순서도 새로 생성해야 한다. 최적의 렌더링 성능을 얻기 위해서는 이러한 단계 각각을 최적화하는 것이 중요하다.
+- 레이아웃 너비, 높이, 왼쪽 또는 상단 위치 등 요소의 기하학적 형태에 영향을 주는 'layout' 속성을 변경하면? Layout → Paint → Composite
+- 페이지의 레이아웃에 영향을 주지 않는 배경 이미지, 텍스트 색상 또는 그림자 등의 'paint only' 속성을 변경하면? Paint → Composite
+- 레이아웃과 페인트가 필요 없는 속성을 변경하면(ex. transform)? Only Composite (Best👍)
+- 각 단계를 트리거하는 속성 확인하려면 [CSS Trigger](https://csstriggers.com/) 참고하기
+
+![https://developers.google.com/web/fundamentals/performance/rendering/images/intro/frame-full.jpg?hl=ko](https://developers.google.com/web/fundamentals/performance/rendering/images/intro/frame-full.jpg?hl=ko)
 
 ![](https://d2.naver.com/content/images/2019/04/helloworld-201904-sangwoo-ko_3-10.gif)
 
