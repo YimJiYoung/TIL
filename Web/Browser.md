@@ -92,7 +92,9 @@
 
 **JavaScript가 파싱을 막을 수 있다** 
 
-`<script>` 태그를 만나면 HTML 문서의 파싱을 중지하고 JavaScript 코드를 로딩하고 파싱해 실행한다. 이는 JavaScript가 DOM 구조를 바꿀 수 있기 때문이다. 만약 파싱을 막고 싶지 않다면 script 태그에 defer/async 속성을 이용하여 문서 파싱이 완료된 후에 또는 비동기적으로 JavaScript 코드를 로딩할 수 있다.
+`<script>` 태그를 만나면 HTML 문서의 파싱을 중지하고 JavaScript 코드를 로딩하고 파싱해 실행한다. 이는 JavaScript가 DOM 구조를 바꿀 수 있기 때문이다. 만약 파싱을 막고 싶지 않다면 script 태그에 defer/async 속성을 이용할 수 있다.
+- defer : 스크립트는 백그라운드에서 병렬적으로 로딩된다 → HTML 파싱이 완료된 후에 스크립트를 실행한다.
+- async: 마찬가지로 스크립트는 백그라운드에서 병렬적으로 로딩된다 → HTML 파싱이 완료되기 전에 로드가 끝난 경우 스크립트가 실행되므로 파싱이 멈출 수 있다.
 
 ### CSS 파싱 → CSSOM
 
