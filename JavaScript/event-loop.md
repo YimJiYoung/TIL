@@ -63,3 +63,4 @@ console.log('Bye');
 ## 참고
 - https://blog.sessionstack.com/how-javascript-works-event-loop-and-the-rise-of-async-programming-5-ways-to-better-coding-with-2f077c4438b5
 - https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+- http://sculove.github.io/blog/2018/01/18/javascriptflow/
