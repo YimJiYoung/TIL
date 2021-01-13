@@ -8,7 +8,8 @@ JavaScript는 싱글 스레드 기반의 언어이다. 싱글 스레드에서 �
 
 ### JavaScript Engine & Web APIs
 
-왼쪽의 큰 박스는 JavaScript Engine을 의미한다. 여기에는 메모리 할당이 이루어지는 메모리 힙, 코드를 실행하면서 (함수가 실행될 때마다) 컨텍스트가 쌓이는 콜 스택이 포함되어 있다. JavaScript에서 싱글 스레드라는 의미는 하나의 콜 스택을 갖고 있다는 뜻이다. 그렇다면 만약 콜 스택에 네트워크 요청과 같이 오래 걸리는 작업이 있다면 어떻게 될까? 응답을 받기 전까지 블로킹 상태가 되어 다른 작업(클릭 이벤트 처리, 렌더링 등)을 수행할 수 없는 상태가 된다. 이를 위해 브라우저(JavaScript Runtime)는 비동기 작업을 수행할 수 있도록 DOM, AJAX, setTImeout과 같은 API를 제공한다. 
+왼쪽의 큰 박스는 자바스크립트 코드를 해석하고 실행하는 JavaScript Engine을 의미한다. 여기에는 메모리 할당이 이루어지는 메모리 힙, 코드를 실행하면서 (함수가 실행될 때마다) 컨텍스트가 쌓이는 콜 스택이 포함되어 있다. JavaScript에서 싱글 스레드라는 의미는 하나의 콜 스택을 갖고 있다는 뜻이다. 그렇다면 만약 콜 스택에 네트워크 요청과 같이 오래 걸리는 작업이 있다면 어떻게 될까? 응답을 받기 전까지 블로킹 상태가 되어 다른 작업(클릭 이벤트 처리, 렌더링 등)을 수행할 수 없는 상태가 된다. 이를 위해 브라우저(JavaScript Runtime)는 비동기 작업을 수행할 수 있도록 DOM, AJAX, setTImeout과 같은 API를 제공한다. 
+(브라우저는 멀티 스레드로 구성되어 있어서 Web API를 병렬적으로 수행할 수 있도록 해준다)
 
 ### Callback
 
@@ -46,6 +47,17 @@ console.log('Bye');
 ![https://miro.medium.com/max/1400/1*eOj6NVwGI2N78onh6CuCbA.png](https://miro.medium.com/max/1400/1*eOj6NVwGI2N78onh6CuCbA.png)
 
 ![https://miro.medium.com/max/1400/1*jQMQ9BEKPycs2wFC233aNg.png](https://miro.medium.com/max/1400/1*jQMQ9BEKPycs2wFC233aNg.png)
+
+
+### Task Queue, Microtask queue, Animation Frames
+
+사실 task queue 뿐만 아니라 프로미스 콜백이 쌓이는 microtask queue, 주기적인 렌더링을 위한 animation frames가 존재한다.
+
+![](http://sculove.github.io/blog/2018/01/18/javascriptflow/browser-structure.png)
+
+- 태스크 큐에서 가장 오래된 태스크를 하나 꺼내 실행한다.
+- 마이크로 태스크에 있는 모든 작업을 꺼내 실행한다.
+- 렌더링할 것이 있으면 처리한다.
 
 
 ## 참고
