@@ -1,7 +1,7 @@
 ## this
 
-- JavaScript에서는 모든 함수가 `this` 속성을 갖고 있으며, 해당 함수가 동작할 메인 객체를 의미한다. 
-- this는 함수를 호출할 때 몇 가지 규칙에 따라서 결정된다. 
+- JavaScript에서는 (화살표 함수 제외)모든 함수가 `this` 속성을 갖고 있으며, 해당 함수가 동작할 메인 객체를 의미한다. 
+- this는 기본적으로 실행 컨텍스트가 생성될 때 함께 결정된다. 실행 컨텍스트는 함수를 호출할 때 생성되므로, this는 함수를 호출할 때 결정된다.
 
 1. **`new` 키워드를 통해 호출된 함수(생성자 함수)의 `this` 는 새로 생성된 인스턴스 객체이다.**
 
@@ -64,6 +64,7 @@
 ### Arrow Function
 
 화살표 함수는 위의 규칙들이 적용되지 않고, 함수가 생성될 때의 스코프에 따라 this를 설정하게 된다.
+(화살표 함수는 this 바인딩을 갖지 않고 상위 스코프의 this 활용)
 
 ```jsx
 const obj = {
@@ -105,8 +106,12 @@ logThisAndArguments.apply(obj, ['First arg', 'Second arg']);
 fnBound();
 // this -> { val: 'Hello!' }
 ```
-
-### DOM event handler
+- 유사배열 객체에 배열 메서드를 적용하고 싶을 때 활용할 수 있다. (sperad operator나 Array.from()으로 대체 가능)
+```javascript
+const nodeList = document.querySelectorAll('div');
+const nodeArr =  Array.prototype.slice.call(nodeList);
+```
+### DOM event handler & Callback 함수에서의 this
 
 함수가 DOM의 이벤트 핸들러로 사용될 때 `this`는 어떤 값으로 설정될까?
 
@@ -125,3 +130,4 @@ button.addEventListener('click', function() {
   console.log(this === button); // true
 });
 ```
+콜백 함수의 제어권을 가지는 함수가 콜백 함수의 this를 어떻게 설정하느냐에 따라 달라진다. 설정되지 않은 경우는 default로 전역 객체로 설종된다.
