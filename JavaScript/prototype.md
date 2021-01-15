@@ -85,6 +85,7 @@ function Rectangle() {
 }
 
 // 하위클래스는 상위클래스를 확장
+// 하위클래스.prototype.__proto__가 상위클래스.prototype이 되도록 설정
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
