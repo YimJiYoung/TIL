@@ -124,8 +124,13 @@ Whenever your object would be mutated, don’t do it. Instead, create a changed 
 > A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function’s scope from an inner function
 
 - 함수와 그 함수가 선언됐을 때의 렉시컬 환경(Lexical environment)과의 조합
-- inner function에서 outer function의 스코프에 접근할 수 있는 것
+- 어떤 함수에서 선언한  변수를 참조하는 내부함수를 외부로 전달할 경우 함수의 실행 컨텍스트가 종료된 후에도 해당 변수가 사라지지 않는 현상
+- GC가 어떤 값을 참조하는 변수가 하나라도 있을 때 그 값을 수집 대상에 포함시키지 않기 때문에 발생한다.
 
+### 활용 사례
+1. 콜백 함수 내부에서 외부 데이터로 사용하는 경우
+2. 접근 권한 제어(정보 은닉)
+3. 부분 적용 함수(n개의 인자를 받는 함수에서 미리 m개의 인자를 넘겨 받고 나머지 인자를 받았을 때 실행) -> 인자를 한 번에 하나씩만 받는 커링 함수
 ```javascript
 function makeAdder(baseNum) {
   return function(num) {
