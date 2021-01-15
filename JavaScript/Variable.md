@@ -76,7 +76,7 @@ fn();
  
 # Reference vs Value
 
-- `Primitive type` :  Number, String, Boolean, undefined, null ( **Pass by Value**)
+- `Primitive type` :  Number, String, Boolean, undefined, null, Symbol ( **Pass by Value**)
 - `Object type` : Array, Function, Object (**Pass by Refernece**)
 
 primitive type을 담고 있는 변수의 경우 `=` 연산자를 통해 다른 변수에 할당했을 때 value 자체가 복사된다. 
@@ -162,3 +162,39 @@ bar(); // 1
 ```
 - 렉시컬 스코프는 함수를 어디서 호출하는지가 아니라 어디에 선언하였는지에 따라 상위 스코프가 결정된다
 - 🔗 참고 : [스코프](https://poiemaweb.com/js-scope#7-%EB%A0%89%EC%8B%9C%EC%BB%AC-%EC%8A%A4%EC%BD%94%ED%94%84)
+
+
+## Symbol
+es6에 도입된 새로운 데이터 타입이며 `Primitive type`이다. string과 함께 객체의 key로 사용될 수 있으나 순회할 때 조회되지 않는다.
+```javascript
+const sym = Symbol(); // new 키워드 없이 x, 매번 유니크한 값 생성
+const obj = {
+    [sym]: 'symbol'
+};
+
+for(const key in obj) {
+  console.log(key, obj[key]);
+} // -> 조회되지 않음
+```
+
+### Symbol.iterator
+객체를 순회할 때 어떤 방식으로 순회할 것인지 설정하기 위한 symbol이다. `for of`, rest 연산자로 iterable(순회가능한) 객체를 만들기 위해서는 Symbol.iterator를 key로 같는 메서드를 정의해아 한다.
+메서드는 next() 메서드를 갖는 iterator 객체를 반환해야 한다. next() 메서드는 value와 done을 속성으로 갖는 객체를 반환한다.
+```javascript
+const obj = {
+    [Symbol.iterator]() {
+        let val = 0;
+
+        return {
+            next() {
+                return { value: val++, done: val > obj.maxValue };
+            }
+        };
+    },
+  
+    maxValue: 10
+};
+
+console.log(...obj);
+// -> 0 1 2 3 4 5 6 7 8 9
+```
