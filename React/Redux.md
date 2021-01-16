@@ -16,6 +16,16 @@ Flux는 데이터를 단방향으로 흐르게 하여 예측가능하도록 만�
 
 ![FLUX](https://media.vlpt.us/images/shaqok/post/1d43a57f-6773-4544-917d-679def1526a5/image.png)
 
+### Redux
+- 하나의 스토어를 갖는다. 
+- action을 처리하는 리듀서는 순수 함수여야 한다.
+  - 네트워크와 같은 side effect X
+  - 같은 입력(state, action)에 대해 같은 결과 반환
+  - 불변성: 새로운 state 객체 반환
+
+#### 불변성
+- React에서는 상태 변화를 shallow equality check(`===`)로 하기 때문에 객체의 경우 레퍼런스가 같은지 확인하여 감지한다.
+- 기존의 상태를 변경하면 이전 상태를 추적하기 어려워진다. 불변성으로 새로운 객체를 반환함으로써 상태의 히스토리도 기록할 수 있다.
 
 ## 참고
 - http://bestalign.github.io/2015/10/06/cartoon-guide-to-flux/
