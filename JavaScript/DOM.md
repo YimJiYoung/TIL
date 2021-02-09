@@ -1,4 +1,18 @@
 ## DOM
+![DOM Node](https://media.vlpt.us/images/wiostz98kr/post/cf345b7f-5f26-4a57-a061-ffd3e1a3f3ea/image.png)
+
+### EventTarget
+이벤트가 발생하고 이벤트 핸들러를 등록할 수 있는 객체에 대한 DOM 인터페이스
+- addEventListener(type, listener, options or useCapture): 이벤트 타입에 대한 핸들러 등록
+  - options default false
+  - capture: 이벤트 캡처링 단계에서 전달받은 이벤트에 대해 핸들러 실행 여부(하위 요소에 이벤트 발생 시 미리 실행)
+  - once: 등록된 이벤트 핸들러 한 번만 실행
+  - passive: true로 설정 시, 핸들러에서 preventDefault()를 실행하지 않을 것을 암시
+- removeEventListener(type, listener, options or useCapture): 이벤트에 등록된 핸들러 삭제
+  - options에는 capture만 가지고 있음
+  - `capture/useCapture`가 일치해야 성공적으로 삭제 가능
+- dispatchEvent(event): `Event` 객체를 받아 해당 이벤트 실행.
+  - 참고: https://ko.javascript.info/dispatch-events
 
 ## textContent vs innerHTML
 ### textContent
