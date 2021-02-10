@@ -42,7 +42,7 @@
 
 ### innerHTML
 - 모든 자식 요소 문자열 형태로 반환
-- innerHTML 의 값을 설정(대입)하면 요소의 모든 자식 노드가 제거되고, 문자열 htmlString에 지정된 HTML을 파싱하고, 생성된 노드로 대체한다. (HTML 파싱 -> DOM tree 구성 -> render tree .. )
+- innerHTML 의 값을 설정(대입)하면 요소의 모든 자식 노드가 제거되고, 문자열 htmlString에 지정된 HTML을 파싱하고, 생성된 노드로 대체한다.
     - 따라서 부분적인 변경이 필요한 경우는 element를 사용하는 것이 좋을 수 있다.
 - cross site scripting 보안 문제. 사용자 입력 문자열로 innerHTML을 사용해서는 안된다 !! 
     - HTML5에서는 innerHTML로 삽입된 <script> 실행하지 않도록 되어 있음 (그러나 다른 방법으로 스크립트가 실행되도록 할 수 있음 - onclick에 설정 등)
