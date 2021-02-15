@@ -69,7 +69,7 @@ ReactDOM.render(element, document.getElementById('root'));
 - “props”라고 하는 임의의 입력을 받은 후, 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환
 
 ### SPA
-
+사용자는 네비게이션 기능(브라우저의 뒤로가기, 앞으로가기)을 활용해서 SPAs에서도 편리하게 여러가지 화면을 접근해서 볼 수 있어야 한다.
 - JS에서 브라우저 페이지 전환 요청 (서버로 요청X)
     - pushState, replaceState 함수 사용
 - 브라우저 뒤로가기와 같은 사용자 페이지 전환 요청 → JS에서 처리 (서버로 요청 X)
@@ -127,3 +127,35 @@ export default App;
 
 // 출처 : https://github.com/landvibe/book-react/blob/master/1-chapter/7-router-test/src/App-2.js
 ```
+
+### **React-router에서의 Routing**
+
+React에서 사용되는 라우팅 라이브러리 중 react-router가 대표적이다. react-router는 Link, Route 컴포넌트와 같은 유용한 컴포넌트를 제공한다.
+- pushState를 활용해 history를 저장하는 컴포넌트 => `<Link>`
+- popstate를 통해 navigation 변화가 발생하면 event.state값을 받아 다시 렌더링 하는 컴포넌트 => `<Route>`
+
+### Router 컴포넌트
+
+라우터를 사용하기 위해선 상위 컴포넌트에서 정의해야 한다.
+
+```jsx
+import React from 'react';
+import { HashRouter as Router } from 'react-router-dom';
+import Routes from './routes';
+
+function App() {
+  return (
+    <Router>
+      <Routes />
+    </Router>
+  );
+```
+
+1. **BrowserRouter**
+    - Link 컴포넌트 to속성에 이동할 경로 기술
+    - Route 컴포넌트 path속성을 Link의 to속성과 매핑 component에 컴포넌트 경로 기술
+    - 새로고침 하면 경로 못찾아서 에러남 → 추가 설정 필요
+2. **HashRouter**
+    - 주소에 해쉬(#)이 붙음
+    - 새로 고침해도 그대로 나옴 -> #뒤에는 화면에서 읽는 경로이기 때문
+    - 검색엔진으로 못읽는 단점때문에 거의 안씀
