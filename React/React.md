@@ -2,9 +2,11 @@
 UI를 만들기 위한 JS 라이브러리
 
 - html 처럼 선언적으로 UI 정의(JSX) → React가 알아서 렌더링
-- view에 대한 부분에 집중.
-- 상태 관리 라이브러리를 사용하여 비지니스 로직 집중
-- virtual DOM - 변경 사항 찾아서(diff 알고리즘) DOM에 업데이트
+- view에 집중하여 개발 가능
+   - 상태 관리, 라우팅을 위해서는 직접 구현하거나 별도의 라이브러리 필요하다.
+   - 상태 관리 라이브러리를 사용하여 비지니스 로직 집중하여 개발 가능
+- virtual DOM 
+   - UI 상태 메모리에 저장, 변경이 필요한 부분 찾아서(diff 알고리즘) DOM에 업데이트 → 불필요한 업데이트 감소, 효율성 증가
 
 ### JSX
 
@@ -44,6 +46,16 @@ const element = {
 - 브라우저 DOM 엘리먼트와 달리 React 엘리먼트는 일반 객체이며(plain object) 쉽게 생성 가능
 - React DOM은 React 엘리먼트와 일치하도록 DOM을 업데이트
 
+```jsx
+// React.createElement(component, props, ...children)
+
+React.createElement(
+   'button',
+   { onClick: () => this.setState({ liked: true }) },
+   '버튼',
+);
+```
+
 **루트 DOM 노드에 element 렌더링**
 
 ```jsx
@@ -55,3 +67,63 @@ ReactDOM.render(element, document.getElementById('root'));
 
 - 재사용 가능한 UI 조각
 - “props”라고 하는 임의의 입력을 받은 후, 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환
+
+### SPA
+
+- JS에서 브라우저 페이지 전환 요청 (서버로 요청X)
+    - pushState, replaceState 함수 사용
+- 브라우저 뒤로가기와 같은 사용자 페이지 전환 요청 → JS에서 처리 (서버로 요청 X)
+    - popState 이벤트
+```jsx
+import React, { Component } from "react";
+
+class App extends Component {
+  state = {
+    pageName: ""
+  };
+  componentDidMount() {
+    window.onpopstate = (event) => {
+      this.onChangePage(event.state);
+    };
+  }
+  onChangePage = (pageName) => {
+    this.setState({ pageName });
+  };
+  onClick1 = () => {
+    const pageName = "page1";
+    window.history.pushState(pageName, "", "/page1");
+    this.onChangePage(pageName);
+  };
+  onClick2 = () => {
+    const pageName = "page2";
+    window.history.pushState(pageName, "", "/page2");
+    this.onChangePage(pageName);
+  };
+  render() {
+    const { pageName } = this.state;
+    return (
+      <div>
+        <button onClick={this.onClick1}>page1</button>
+        <button onClick={this.onClick2}>page2</button>
+        {!pageName && <Home />}
+        {pageName === "page1" && <Page1 />}
+        {pageName === "page2" && <Page2 />}
+      </div>
+    );
+  }
+}
+
+function Home() {
+  return <h2>여기는 홈페이지입니다. 원하는 페이지 버튼을 클릭하세요.</h2>;
+}
+function Page1() {
+  return <h2>여기는 Page1입니다.</h2>;
+}
+function Page2() {
+  return <h2>여기는 Page2입니다.</h2>;
+}
+
+export default App;
+
+// 출처 : https://github.com/landvibe/book-react/blob/master/1-chapter/7-router-test/src/App-2.js
+```
