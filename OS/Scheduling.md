@@ -41,3 +41,12 @@ preemptive(선점): CPU를 할당 받아 실행 중인 프로세스를 중지시
 - 각 프로세스는 주어진 시간(time quantum)만큼 돌아가면서 실행된다 (preemtive 방식)
 - 장점: 응답시간 빨라짐
 - 단점: quantum이 작으면 context switch 빈번하게 발생 → 오버헤드
+
+### Real-time Scheduling
+정해진 시간 내에 task를 완료해야 한다.
+- Hard real-time system: real-time task가 정해진 시간 내에 반드시 완료해야 한다.
+- Soft real-time system: real-time task가 정해진 시간 내에 완료되는 것을 보장하지 않음. 그러나 일반 task에 비해 높은 우선순위를 갖고 수행된다.
+
+### Thread Scheduling
+- user level thread: 사용자 수준의 thread library에 의해 스케쥴링된다.
+- kernel level thread: 커널에 의해 스케쥴링된다.
