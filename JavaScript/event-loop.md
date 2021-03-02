@@ -56,7 +56,7 @@ console.log('Bye');
 ![](http://sculove.github.io/blog/2018/01/18/javascriptflow/browser-structure.png)
 
 - 렌더링할 것이 있으면 처리한다.
-- 마이크로 태스크에 있는 모든 작업을 꺼내 실행한다.
+- 마이크로 태스크에 있는 모든 작업을 꺼내 실행한다. (처리 중 새로 들어온 작업까지 모두 실행)
 - 태스크 큐에서 가장 오래된 태스크를 하나 꺼내 실행한다.
 
 
