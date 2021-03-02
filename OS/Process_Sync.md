@@ -62,12 +62,14 @@ do {
 ```
 
 ## Semaphore
-앞선 방식과 같이 critical section 문제를 해결하기 위한 추상 자료형. 정수값 S을 가지고 P, V의 연산을 할 수 있다.
+앞선 방식과 같이 critical section 문제를 해결하기 위한 추상 자료형. 정수값 S을 가지고 P, V의 Atomic 연산을 할 수 있다.
+P는 critical section에 들어가기 전에 수행되고 V는 나올 때 수행된다. 
+- Binary Semaphore: S는 0 또는 1의 값을 가진다 -> mutex, lock
+- Count Semaphore: S는 가능한 자원의 수를 의미한다.
 ```
 // busy waiting 방식
 
 P(S) 
-// Atomic하다고 가정
 // while(S <= 0);
 // S-- 
 
@@ -84,3 +86,48 @@ do {
   // remainder section
 } while(true);
 ```
+### Producer-Consumer Problem (using Semaphore)
+- Semaphore: full(0으로 초기화), empty(n으로 초기화), mutex(1로 초기화)
+```
+Producer:
+1. empty buffer 확인
+2. lock -> shared data 추가 -> unlock
+3. full buffer 증가
+
+ do {
+     ...
+     아이템을 생산한다.
+     ...
+     P(empty);  //버퍼에 빈 공간이 생길 때까지 기다린다.
+     P(mutex); //임계 구역에 진입할 수 있을 때까지 기다린다.
+     ...
+     아이템을 버퍼에 추가한다.
+     ...
+     V(mutex); //임계 구역을 빠져나왔다고 알려준다.
+     V(full);  //버퍼에 아이템이 있다고 알려준다.
+ } while (1);
+
+Consumer:
+1. full buffer 확인
+2. lock -> shared data 감소 -> unlock
+3. empty buffer 
+
+do {
+     P(full);    //버퍼에 아이템이 생길 때까지 기다린다.
+     P(mutex);
+     ...
+     버퍼로부터 아이템을 가져온다.
+     ...
+     V(mutex);
+     V(empty); //버퍼에 빈 공간이 생겼다고 알려준다.
+     ...
+     아이템을 소비한다.
+     ...
+ } while (1);
+```
+
+## Monitor
+![monitor](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTGpXqwFgovBDjM0btchO6oYXGuZSVE2MK3Q&usqp=CAU)
+- 동시 접근을 막기 위한 높은 추상화 수준의 자료형이다.
+- 한번에 하나의 프로세스(스레드)만이 monitor의 operation을 수행할 수 있다 -> semaphore처럼 critical section에 들어가기 전에 lock 걸어줄 필요 없음 ‼
+- condition variable: 값을 가지지 않고 조건에 따라 wait/signal 연산을 통해 프로세스를 sleep/awake 시키는 용도로 사용한다.
