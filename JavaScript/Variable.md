@@ -178,7 +178,7 @@ for(const key in obj) {
 ```
 
 ### Symbol.iterator
-객체를 순회할 때 어떤 방식으로 순회할 것인지 설정하기 위한 symbol이다. `for of`, rest 연산자로 iterable(순회가능한) 객체를 만들기 위해서는 Symbol.iterator를 key로 같는 메서드를 정의해아 한다.
+객체를 순회할 때 어떤 방식으로 순회할 것인지 설정하기 위한 symbol이다. `for of`, rest 연산자로 iterable(순회가능한) 객체를 만들기 위해서는 Symbol.iterator를 key로 갖는 메서드를 정의해아 한다.
 메서드는 next() 메서드를 갖는 iterator 객체를 반환해야 한다. next() 메서드는 value와 done을 속성으로 갖는 객체를 반환한다.
 ```javascript
 const obj = {
