@@ -42,6 +42,22 @@ preemptive(선점): CPU를 할당 받아 실행 중인 프로세스를 중지시
 - 장점: 응답시간 빨라짐
 - 단점: quantum이 작으면 context switch 빈번하게 발생 → 오버헤드
 
+### MultiLevel Queue
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/multilevel-queue-schedueling-1-300x217.png)
+- 우선순위가 낮은 큐에서 작업 실행 중이더라도 상위 단계의 큐에 프로세스가 도착하면 CPU를 빼앗는 선점형 스케줄링
+- 레디 큐를 각 성격에 따라 여러 개로 분리한다.
+- 각 큐는 각자의 우선순위와 스케쥴링 알고리즘을 가진다. (각 큐는 라운드 로빈이나 FCFS등 독자적 스케줄링 사용 가능)
+- 큐에 대한 스케쥴링이 필요하다.
+  - Fixed Priority:  우선순위가 낮은 큐의 프로세스가 오랫동안 CPU 할당을 기다리는 Starvation 이 발생할 수 있음
+  - Time Slice: 각 큐에 적절한 비율로 CPU 시간 할당
+
+### MultiLevel Feedback Queue
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/Multilevel-Feedback-Queue-Scheduling-300x269.png)
+- Multilevel Queue의 방식에서 프로세스의 큐 간 이동이 가능해졌다.
+  - 우선순위 낮은 레디큐에는 큰 Time Quantum을 줌
+
 ### Real-time Scheduling
 정해진 시간 내에 task를 완료해야 한다.
 - Hard real-time system: real-time task가 정해진 시간 내에 반드시 완료해야 한다.
