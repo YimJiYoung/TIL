@@ -86,9 +86,13 @@ page frame 하나당 page table에 하나의 entry를 둔 것. (system wide - �
 ## Segmentation
 
 logical address를 동일한 크기의 page가 아닌 code, data, stack과 같이 의미 단위의 segment로 쪼개는 방식.
-- segment의 크기가 균일하지 않으므로 가변분할 방식과 동일한 문제가 발생한다 (외부 조각 발생)
 - 논리 주소: segmentation number, offset
 - segment table: limit(segment의 크기), base
-
+- 장점: 의미 단위로 쪼개기 때문에 보안, 공유 설정하기에 유리하다. segment의 개수는 page보다 많지 않으므로 table로 인한 메모리의 낭비가 적다.
+- 단점: segment의 크기가 균일하지 않으므로 가변분할 방식과 동일한 문제가 발생한다 (외부 조각 발생)
 ![](https://www.enterprisestorageforum.com/wp-content/uploads/2021/02/paging-and-segmentation_6019c4f2d369c.png)
 
+
+### Paged Segmentation
+- segment를 page 단위로 쪼개는 방법. segment 당 page table이 존재하게 된다 → segmentation의 외부 단편화 문제 해결
+![](https://www.gatevidyalay.com/wp-content/uploads/2018/11/Segmented-Paging-Translating-Logical-Address-into-Physical-Address-Diagram.png)
