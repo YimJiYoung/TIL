@@ -96,3 +96,25 @@ logical address를 동일한 크기의 page가 아닌 code, data, stack과 같�
 ### Paged Segmentation
 - segment를 page 단위로 쪼개는 방법. segment 당 page table이 존재하게 된다 → segmentation의 외부 단편화 문제 해결
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/11/Segmented-Paging-Translating-Logical-Address-into-Physical-Address-Diagram.png)
+
+# Virtual Memory
+
+
+## demand paging
+페이지가 필요할 때 메모리에 올리는 기법 → 메모리 사용량 감소, 더 많은 프로그램 동시에 실행 가능
+
+## Page Fault
+어떤 페이지에 대해 접근하는 경우(address translation) 해당 페이지가 물리적 메모리에 없는 경우 page fault가 발생한다.
+page fault는 trap의 한 종류이며 OS는 trap 발생 시 해당 페이지를 Dish I/O 작업을 통해 메모리에 올린다. 
+
+![](https://media.geeksforgeeks.org/wp-content/uploads/121-1.png)
+
+## Page Replacement Algorithm
+page fault 발생 시 비용이 큰 disk I/O가 발생하기 때문에 page fault를 방지하는 것이 중요하다.
+page replacement algorithm은 page fault가 발생했을때 메모리가 꽉 찬 경우 어떤 페이지을 내쫓을 것인지에 대한 것으로 page fault rate을 줄이도록 설계한다.
+
+### LRU(Least Recently Used)
+가장 오래 전에 참조된 페이지를 쫓아냄
+
+### LFU(Least Frequetly Used)
+참조 횟수가 가장 적은 페이지를 쫓아냄
