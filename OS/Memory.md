@@ -98,7 +98,7 @@ logical address를 동일한 크기의 page가 아닌 code, data, stack과 같�
 ![](https://www.gatevidyalay.com/wp-content/uploads/2018/11/Segmented-Paging-Translating-Logical-Address-into-Physical-Address-Diagram.png)
 
 # Virtual Memory
-
+프로그램이 실행되기 위해 그 프로세스의 주소 공간 전체가 메모리에 올라와 있어야 하는 것은 아니다. 메모리의 연장 공간으로 디스크의 스왑 영역이 사용될 수 있기 때문에 프로그램 입장에서는 물리적 메모리 크기에 대한 제약을 생각할 필요가 없어진다. 
 
 ## demand paging
 페이지가 필요할 때 메모리에 올리는 기법 → 메모리 사용량 감소, 더 많은 프로그램 동시에 실행 가능
@@ -126,3 +126,45 @@ page replacement algorithm은 page fault가 발생했을때 메모리가 꽉 찬
 ![clock](http://pages.cs.wisc.edu/~bart/537/lecturenotes/figures/s21.clock.gif)
 - LRU나 LFU 알고리즘은 페이지의 참조 순서나 참조 횟수를 (linked list나 heap과 같은 자료구조를 사용하여) 소프트웨어적으로 유지해야하는 오버헤드가 있다. 클락 알고리즘은 하드웨어적인 지원으로 LRU를 근사하여 최근에 참조되지 않은 페이지 중 하나를 교체하는 알고리즘으로 Not Recently Used 알고리즘으로도 불린다.
 - 메모리 내의 페이지에 대한 참조 비트를 가지고 있고 이는 참조되었을 때 1로 설정되고 clock의 시곗바늘(iterator, handle)이 돌면서 0으로 설정한다. 시곗바늘이 가리키는 페이지의 참조 비트가 0일 경우 해당 페이지는 시곗바늘이 한 바퀴 도는 동안 참조되지 않은 페이지를 의미하므로 교체 대상이 된다.
+- 알고리즘 개선을 위해 modified_bit를 사용할 수 있다. modified_bit은 최근에 수정되었음을 의미하며 따라서 swap out될 때 변경 사항을 저장해야하므로 disk I/O가 발생한다. 따라서 modified_bit가 0인 페이지를 우선적으로 교체 대상으로 설정한다.
+
+
+## Page Frame의 Allocation
+
+
+프로그램마다 몇 개의 page frame을 할당할 것인지의 문제. 프로그램이 원활하게 실행되기 위해서는 page fault가 적게 발생해야 하며, 일정 수준 이상의 frame을 할당 받아야 한다.
+- ex) code, data, stack 영역 동시에 접근, for문 순회할 때 for문 내의 코드 반복 접근
+- **Global replacement** : 다른 프로세스에 할당된 frame 뺏어올 수 있음.
+  - LRU, LFU 전체 페이지 대상으로
+  - Working set, PFF 알고리즘
+- **Local replacement** : 현재 수행중인 프로세스에게 할당된 frame 내에서만 replacement. 프로세스마다 페이지 프레임을 미리 할당하는 것을 전제로 함.
+   - 프로세스별로 LRU, LFU 등의 알고리즘 독자적으로 운영 가능
+
+
+### Thrashing
+
+![thrashing](https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F2623B436575917D11D)
+
+프로세스가 필요한 최소의 page frame을 할당받지 못한 경우 발생하는 문제
+- page fault rate 증가
+- cpu utilization 감소
+  - page fault로 인한 disk I/O 빈번하게 발생 -> process block, context swtich 발생 -> OS가 프로세스를 실행하는 시간보다 page fault를 처리하는 오버헤드가 커지므로 cpu utilization은 감소한다.
+
+### Working-set
+
+![working-set](https://examradar.com/wp-content/uploads/2016/10/Example-4.6.png)
+
+프로세스는 일정 시간동안 특정 주소 영역을 집중적으로 참조하는 경향이 있고 이렇게 집중적으로 참조되는 페이지들의 집합을 지역성 집합이라고 한다.
+워킹셋 알고리즘은 이러한 지역성 집합이 메모리에 동시에 올라갈 수 있도록 하여 thrashing을 방지하는 알고리즘이다.
+
+- 워킹셋 : 현재 시점에서 윈도우만큼의 시간 간격에서 참조된 페이지들의 집합
+- 프로세스의 워킹셋을 구성하는 페이지들이 모두 메모리에 올라갈 수 있는 경우에만 할당
+- 아닌 경우에는 할당된 페이지 프레임 모두 반환한다. 프로세스의 주소 공간 전체를 swap out(**Suspended**)
+
+### Page Fault Frequency: PFF
+
+![PFF](https://lh3.googleusercontent.com/proxy/DDfSGPyOVgC6Mv3ZJOWX-Ldrpj7ljdqpRzGS1vGp8qLL82gsu1esqXr3r-SyixLXaUDxiEZZJp8H7wZw6Eia2TGCDQxWbVZpQ6NWwY7y2g3aXX3tH6iDn6T4)
+
+프로세스의 page fault frequency를 주기적으로 조사하고 이 값에 근거하여 각 프로세스에 할당할 프레임 수를 조절한다.
+- page fault frequency > upper bound: 프로세스에 할당된 프레임 수가 부족하다고 판단 -> 페이지 프레임 할당량 증가
+- page fault frequency < lower bound: 프로세스에게 필요 이상으로 많은 프레임이 할당된 것으로 판단 -> 페이지 
