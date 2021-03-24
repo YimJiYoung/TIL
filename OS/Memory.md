@@ -167,4 +167,4 @@ page replacement algorithm은 page fault가 발생했을때 메모리가 꽉 찬
 
 프로세스의 page fault frequency를 주기적으로 조사하고 이 값에 근거하여 각 프로세스에 할당할 프레임 수를 조절한다.
 - page fault frequency > upper bound: 프로세스에 할당된 프레임 수가 부족하다고 판단 -> 페이지 프레임 할당량 증가
-- page fault frequency < lower bound: 프로세스에게 필요 이상으로 많은 프레임이 할당된 것으로 판단 -> 페이지 
+- page fault frequency < lower bound: 프로세스에게 필요 이상으로 많은 프레임이 할당된 것으로 판단 -> 페이지 할당량 감소
