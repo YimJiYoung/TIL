@@ -21,7 +21,7 @@
 디스크를 파티션으로 구성하고 각 파티션을 File system 또는 swaping area로 사용할 수 있다.
 
 ### File Open
-![](https://jhi93.github.io/assets/img/os/openfunction3.png)
+![](https://imgur.com/4vD0Iki.png)
 
 #### Open File Table
 현재 open된 파일들의 메타데이터 저장소(in memory)
