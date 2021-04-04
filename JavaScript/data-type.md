@@ -44,7 +44,8 @@ const obj = {
 console.log(...obj);
 // -> 0 1 2 3 4 5 6 7 8 9
 ```
-
+<br>
+<br>
 
 ## Reference vs Value
 
@@ -54,11 +55,6 @@ console.log(...obj);
 primitive type을 담고 있는 변수의 경우 `=` 연산자를 통해 다른 변수에 할당했을 때 value 자체가 복사된다. 
 
 그러나 Object type의 경우는 Object value 자체가 아니라 Object value에 대한 reference가 복사된다.
-
-```jsx
-var reference = [1];
-var refCopy = reference;
-```
 
 ### Primitive value = immutable value
 
