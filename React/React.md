@@ -1,4 +1,4 @@
-## React
+# React
 UI를 만들기 위한 JS 라이브러리
 
 - html 처럼 선언적으로 UI 정의(JSX) → React가 알아서 렌더링
@@ -8,7 +8,7 @@ UI를 만들기 위한 JS 라이브러리
 - virtual DOM 
    - UI 상태 메모리에 저장, 변경이 필요한 부분 찾아서(diff 알고리즘) DOM에 업데이트 → 불필요한 업데이트 감소, 효율성 증가
 
-### JSX
+## JSX
 
 - UI를 기술하기 위해서 사용하는 HTML과 유사한,  JavaScript를 확장한 문법.
 - React Element를 생성한다.
@@ -41,7 +41,7 @@ const element = {
 };
 ```
 
-### element
+## element
 
 - 브라우저 DOM 엘리먼트와 달리 React 엘리먼트는 일반 객체이며(plain object) 쉽게 생성 가능
 - React DOM은 React 엘리먼트와 일치하도록 DOM을 업데이트
@@ -63,12 +63,21 @@ const element = <h1>Hello, world</h1>;
 ReactDOM.render(element, document.getElementById('root'));
 ```
 
-### Component
+## Component
 
 - 재사용 가능한 UI 조각
 - “props”라고 하는 임의의 입력을 받은 후, 화면에 어떻게 표시되는지를 기술하는 React 엘리먼트를 반환
 
-### SPA
+### Component의 반환값
+함수형 컴포넌트의 가능한 반환값은 다음과 같다
+- Element
+- 숫자
+- 배열 → key 설정이 필요함
+- Fragment → 여러 개의 요소 반환할 떄 사용, fragment 내의 순서가 key 역할을 함
+- null, boolean → 렌더링 되지 않음
+- React Portal → root element 이의의 요소에 렌더랑하고자 할 때 사용
+
+## SPA
 사용자는 네비게이션 기능(브라우저의 뒤로가기, 앞으로가기)을 활용해서 SPAs에서도 편리하게 여러가지 화면을 접근해서 볼 수 있어야 한다.
 - JS에서 브라우저 페이지 전환 요청 (서버로 요청X)
     - pushState, replaceState 함수 사용
