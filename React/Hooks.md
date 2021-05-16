@@ -24,7 +24,7 @@ function onClick() {
 // count 2번 증가 시키고 싶다면 setCount(count => count + 1); 콜백 함수 사용하기
 ```
 
-- `window.addEventListener('click')` 과 같이 React에서 직접적으로 관리하지 않는 영역에서 setState 사용할 경우엔 동기적으로 실행 → ReactDOM.unstable_batchUpdate 사용
+- `window.addEventListener('click')` 과 같이 React에서 직접적으로 관리하지 않는 영역에서 setState 사용할 경우엔 동기적으로 실행하기 때문에 배치로 처리하고 싶다면 ReactDOM.unstable_batchUpdate 함수를 사용해야 한다.
 
 ## useEffect
 
