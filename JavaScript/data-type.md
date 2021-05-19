@@ -11,7 +11,8 @@
 ## null
 
 ## Symbol
-es6에 도입된 새로운 데이터 타입이며 `Primitive type`이다. string과 함께 객체의 key로 사용될 수 있으나 순회할 때 조회되지 않는다.
+es6에 도입된 새로운 데이터 타입이며 `Primitive type`이다. 다른 값과 중복되지 않는 유니크한 값을 가지며 문자열과 함께 객체의 key로 사용될 수 있다.
+Symbol 값을 프로퍼티로 사용하여 생성한 프로퍼티는 `for in` 문이나 `Object.keys`, `Object.getOwnPropertyNames`로 조회되지 않는다.
 ```javascript
 const sym = Symbol(); // new 키워드 없이 x, 매번 유니크한 값 생성
 const obj = {
@@ -22,6 +23,10 @@ for(const key in obj) {
   console.log(key, obj[key]);
 } // -> 조회되지 않음
 ```
+
+### Symbol.for / Symbol.keyFor
+- `Symbol.for()` : 인수로 전달받은 문자열을 키로 사용하여 키와 심벌 값의 쌍들이 저장되어 있는 전역 심벌 레지스트리에서 해당 키와 일치하는 심벌 값을 검색한다.
+- `Symbol.keyFor()`: 전역 심벌 레지스트리에 저장된 심벌 값의 키를 추출한다.
 
 ### Symbol.iterator
 객체를 순회할 때 어떤 방식으로 순회할 것인지 설정하기 위한 symbol이다. `for of`, rest 연산자로 iterable(순회가능한) 객체를 만들기 위해서는 Symbol.iterator를 key로 갖는 메서드를 정의해아 한다.
