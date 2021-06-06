@@ -58,3 +58,46 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 - video (if the controls attribute is present)
 - input (if the type attribute is not in the Hidden state), label, select, textarea
 - button
+
+
+## HTML Element - Document Metadata
+
+### head
+문서에 대한 메타데이터를 담는 요소.
+
+### meta
+해당 문서, 애플리케이션의 메타데이터를 담는 요소
+- charaset : 문자 인코딩 방식 결정
+- viewport : 모바일 디바이스의 화면에서 어떻게 보일지 결정
+- description : SEO 최적화를 위해서 검색 결과에 보이는 설명을 작성
+- Open Graph Protocol : Facebook 등 소셜 서비스에서 사용하는 공유를 위한 프로토콜
+- Twitter Card : 트위터에서 카드 형태로 공유할 때 사용하는 프로토콜
+
+```html
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <meta property="og:title" content="The Rock" />
+   <meta property="og:type" content="video.movie" />
+   <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
+   <meta property="og:image" content="https://ia.media-imdb.com/images/rock.jpg" />
+
+   <meta name="twitter:card" content="summary_large_image">
+   <meta name="twitter:site" content="@nytimes">
+   <meta name="twitter:creator" content="@SarahMaslinNir">
+   <meta name="twitter:title" content="Parade of Fans for Houston’s Funeral">
+   <meta name="twitter:description" content="NEWARK - The guest list and parade of limousines with celebrities emerging from them seemed more suited to a red carpet event in Hollywood or New York than than a gritty stretch of Sussex Avenue near the former site of the James M. Baxter Terrace public housing project here.">
+   <meta name="twitter:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg">
+```
+
+### title
+문서의 제목을 담는 요소 (SEO를 위해서 필수)
+
+### link
+외부 문서, 콘텐츠와 연결하는 요소. 스타일 시트와 연결하는데 주로 사용. (HTTP 요청이 추가로 발생하기 때문에 성능 저하의 가능성이 있다)
+```
+<link rel="stylesheet" href="style.css">
+```
+
+### style
+문서 내에서 사용하는 스타일 정의. 별도의 HTTP 요청이 발생하지 않기 때문에 렌더링에 필수적인 스타일을 style 요소 내에 두면 성능을 개선할 수 있다.
