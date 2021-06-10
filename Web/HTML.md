@@ -101,3 +101,18 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 
 ### style
 문서 내에서 사용하는 스타일 정의. 별도의 HTTP 요청이 발생하지 않기 때문에 렌더링에 필수적인 스타일을 style 요소 내에 두면 성능을 개선할 수 있다.
+
+
+## HTML Element - Sections
+
+### body
+
+### heading(h1, h2, h3, h4, h5, h6)
+- 제목을 명시할 때 사용하는 요소. (숫자는 중요도 또는 계급을 나타냄)
+- heading 요소를 적절하게 사용하여 문서의 아웃라인을 나타낼 수 있다
+  - 참고: [HTML 구획과 개요 사용하기](https://developer.mozilla.org/ko/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines)
+
+### article & section
+- heading만으로 문서의 구조와 아웃라인을 표현하는데 한계가 있기 때문에 article, section과 같은 요소를 사용해서 구역을 명확하게 나눌 수 있다.
+- 독립적인 콘텐츠를 담고있는 경우 article을, 다른 콘텐츠와 연관이 있는 경우 section을 사용한다.
+
