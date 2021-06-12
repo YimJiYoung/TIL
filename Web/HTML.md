@@ -116,3 +116,45 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 - heading만으로 문서의 구조와 아웃라인을 표현하는데 한계가 있기 때문에 article, section과 같은 요소를 사용해서 구역을 명확하게 나눌 수 있다.
 - 독립적인 콘텐츠를 담고있는 경우 article을, 다른 콘텐츠와 연관이 있는 경우 section을 사용한다.
 
+### header
+- 소개 및 탐색에 도움을 주는 콘텐츠를 나타낸다. 
+- 콘텐츠의 시작 부분 명시
+
+### hgroup
+- heading 요소를 그룹화하기 위해 사용한다.
+- 제목-부제목과 같은 "다단계 제목"을 만들 수 있다.
+```html
+<hgroup>
+  <h1>주요 제목</h1>
+  <h2>부제목</h2>
+</hgroup>
+```
+
+### footer
+- 콘텐츠의 마무리를 나타내는 요소.
+  - 작성자 정보나 copyright, 출처 등의 정보를 담는다.
+
+### address
+- contact 정보를 담는 요소.
+```html
+<address>
+  <a href="mailto:jim@rock.com">jim@rock.com</a><br>
+  <a href="tel:+13115552368">(311) 555-2368</a>
+</address>
+```
+
+### nav
+- 페이지 네비게이션 콘텐츠를 나타내는 요소.
+  - 내부 혹은 외부 문서에 연결되는 네비게이션 링크를 포함한다. (주로 a 태그와 함께 사용)
+ ```
+ <nav class="menu">
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+ ```
+ 
+### aside
+- 문서의 메인 콘텐츠와 직접적인 연관이 없는 콘텐츠를 나타내는 요소. (ex. 추천, 광고)
