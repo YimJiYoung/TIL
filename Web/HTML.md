@@ -158,3 +158,60 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
  
 ### aside
 - 문서의 메인 콘텐츠와 직접적인 연관이 없는 콘텐츠를 나타내는 요소. (ex. 추천, 광고)
+
+
+
+## HTML Element - Grouping content
+
+### p
+- 하나의 문단(paragraph)을 나타내는 요소
+
+### blockquote
+- 인용 블록을 나타내는 요소
+- 인용문의 출처 URL은 cite 특성으로, 출처 텍스트는 <cite> 요소로 제공할 수 있다.
+   
+```html
+<figure>
+    <blockquote cite="https://www.huxley.net/bnw/four.html">
+        <p>Words can be like X-rays, if you use them properly—they’ll go through anything. You read and you’re pierced.</p>
+    </blockquote>
+    <figcaption>—Aldous Huxley, <cite>Brave New World</cite></figcaption>
+</figure>
+```
+   
+   
+### ol, ul, li
+- ol(ordered list): 순서 있는 목록을 나타내는 요소 (ex. 레시피, 커리큘럼 등)
+- ul(unordered list): 순서 없는 목록을 나타내는 요소 
+- li(list item): 목록 내의 아이템을 나타내는 요소. 부모 요소로 li, ul, menu를 가져야 한다.
+   
+### dl, dt, dd
+- dl(Description List): 정의 목록을 나타내는 요소
+- dt(Description Term): 정의하고자 하는 대상을 나타내는 요소
+- dd(Description Details): dt 요소에 이어서 대상에 대한 설명을 나타내는 요소
+   - dt와 dd는 쌍을 이루어야 한다. (하나의 dt에 여러 dd 가능)
+ ```html
+ <dl>
+    <dt>Denim (semigloss finish)</dt>
+    <dd>Ceiling</dd>
+ 
+    <dt>Denim (eggshell finish)</dt>
+    <dt>Evening Sky (eggshell finish)</dt>
+    <dd>Layered on the walls</dd>
+</dl>
+ ```
+ 
+### figure, figcation
+  - figure: 삽화나 다이어그램, 사진 등과 같이 문서의 주요 흐름과는 독립적이지만 부연 설명을 위한 콘텐츠를 담는 요소.
+     - figure 요소 내에 figcation 요소를 이용해서 부연 설명을 추가한다.
+ ```
+ <figure>
+    <img src="/media/cc0-images/elephant-660-480.jpg"
+         alt="Elephant at sunset">
+    <figcaption>An elephant at sunset</figcaption>
+</figure>
+ ```
+   
+### main
+- 문서의 메인 컨텐츠를 나타내는 요소.
+   - 문서는 hidden 속성을 가지지 않은 main 요소를 하나 이상 가질 수 없다.
