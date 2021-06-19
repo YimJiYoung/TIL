@@ -215,3 +215,31 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 ### main
 - 문서의 메인 컨텐츠를 나타내는 요소.
    - 문서는 hidden 속성을 가지지 않은 main 요소를 하나 이상 가질 수 없다.
+
+
+###  div 
+- 의미 없이 css 등의 목적으로 사용하는 컨테이너의 역할을 한다.
+- <div> 요소는 의미를 가진 다른 요소(<article>, <nav> 등)가 적절하지 않을 때만 사용해야 한다. (🚧 마지막 수단으로 사용하자 !)
+   
+
+## HTML Element - Text-level semantics
+
+### a 
+- href 속성을 통해 하이퍼 링크를 생성하는 요소
+ - href 속성이 필수는 아니다(없을 시 비활성화 상태)
+ - download 속성을 이용해 링크로 이동하는 대신 리소스를 다운로드 받게 할 수 있다.
+ - target 속성을 통해 링크된 url을 표시할 위치를 결정한다.
+    - `_self`: 현재 브라우징 맥락(탭, 윈도우 또는 iframe)에서 이동 (기본값)
+    - `_blank`: 새로운 탭으로 이동 
+
+#### hash link
+같은 페이지 내에 해당 아이디를 가진 요소로 이동
+```html
+<!-- <a> element links to the section below -->
+<p><a href="#Section_further_down">
+  Jump to the heading below
+</a></p>
+
+<!-- Heading to link to -->
+<h2 id="Section_further_down">Section further down</h2>
+```
