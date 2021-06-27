@@ -41,7 +41,7 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 문서 내에서 text를 사용하는 모든 콘텐츠 모델
 
 ### Embedded content
-문서 내에서 다른 리소스를 불러오는 콘텐츠
+문서 내에서 외부 리소스를 불러오는 콘텐츠
 - audio
 - canvas
 - embed
@@ -243,3 +243,27 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 <!-- Heading to link to -->
 <h2 id="Section_further_down">Section further down</h2>
 ```
+   
+### span
+- 여러 개의 텍스트 요소를 감싸기 위해 사용하는 요소. (div와 마찬가지로 의미를 가지지 않으므로 마지막 수단으로 사용하자 !)
+   
+### br, wbr
+- br: 텍스트 내에서 줄바꿈을 일으키는 요소.
+- wbr: 줄바꿈이 일어나는 위치를 나타내는 요소
+   
+   
+   
+## HTML Element - Embedded Content
+   
+### img, [picture](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
+- 이미지를 불러올 때 사용하는 요소
+- picture 요소를 사용하여 브라우저 지원 범위에 따라 다양한 이미지 포맷을 사용할 수 있다.
+   - webp는 구글에서 제작한 이미지 포맷으로 jpeg보다 작은 용량을 갖고 투명도를 표현한다.
+```html
+   <picture>
+     <source type="image/svg+xml" srcset="pyramid.svg">
+     <source type="image/webp" srcset="pyramid.webp">
+     <img src="pyramid.png" alt="정삼각형 4개로 만든 일반적인 피라미드">
+   </picture>
+```
+   
