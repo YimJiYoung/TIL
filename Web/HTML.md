@@ -266,4 +266,27 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
      <img src="pyramid.png" alt="정삼각형 4개로 만든 일반적인 피라미드">
    </picture>
 ```
+
+### video
+- 비디오를 불러오기 위해 사용하는 요소
+- src 속성으로 리소스의 경로를 지정하고 source 요소를 사용하여 여러 개의 foramt을 지원할 수 있다. 
+   - video 내의 컨텐츠는 브라우저가 해당 요소를 지원하지 않을 때 fallback으로 보여진다.
+- autoplay: 비디오 자동 재생 설정. 접근성 이슈로 muted 속성으로 음소거를 해둔 상태로 재생해야한다.
+- controls: 볼륨 조절, 재생/멈춤 등의 브라우저 기본 컨트롤을 제공한다.
+```
+   <video controls width="250">
+
+    <source src="/media/cc0-videos/flower.webm"
+            type="video/webm">
+
+    <source src="/media/cc0-videos/flower.mp4"
+            type="video/mp4">
+
+    Sorry, your browser doesn't support embedded videos.
+</video>
+```
    
+### iframe
+- 외부의 HTML 문서를 불러오기 위해 사용하는 요소
+- src
+- allow: 어떤 기능을 허용해줄 것인지 
