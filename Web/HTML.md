@@ -287,3 +287,72 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 - 외부의 HTML 문서를 불러오기 위해 사용하는 요소
 - src
 - allow: 어떤 기능을 허용해줄 것인지 
+
+   
+## HTML Element - tabular data
+   
+### table 
+행과 열로 이루어진 표를 나타내는 요소
+```html
+   <table>
+    <caption>Council budget (in £) 2018</caption>
+    <thead>
+        <tr>
+            <th>Items</th>
+            <th scope="col">Expenditure</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Donuts</th>
+            <td>3,000</td>
+        </tr>
+        <tr>
+            <th scope="row">Stationery</th>
+            <td>18,000</td>
+        </tr>
+    </tbody>
+  </table>
+```
+   
+### caption
+표의 제목 또는 설명을 나타내는 요소
+   
+### thead, tbody, tfoot
+각각 테이블의 헤드, 본문, 결론(요약) 부분을 나타내는 요소
+   
+### colgroup, col
+각 셀에 공통적인 스타일을 적용하고자 할 때 사용된다.
+   - col의 갯수는 tr 요소 내의 셀 갯수와 동일해야 한다.
+   - span 속성으로 여러 셀에 같은 스타일을 부여할 수 있다.
+```html
+   <table>
+    <caption>Superheros and sidekicks</caption>
+    <colgroup>
+        <col>
+        <col span="2" class="batman">
+        <col span="2" class="flash">
+    </colgroup>
+    <tr>
+        <td> </td>
+        <th scope="col">Batman</th>
+        <th scope="col">Robin</th>
+        <th scope="col">The Flash</th>
+        <th scope="col">Kid Flash</th>
+    </tr>
+    <tr>
+        <th scope="row">Skill</th>
+        <td>Smarts</td>
+        <td>Dex, acrobat</td>
+        <td>Super speed</td>
+        <td>Super speed</td>
+    </tr>
+</table>
+```
+   
+### tr, th, td
+- tr: 테이블의 행(row)를 의미한다. 
+   - td와 th 요소를 자식 요소로 사용 
+- td: 테이블 내의 각 데이트를 의미한다.
+- th: 데이터의 제목(header)를 의미한다.
+   - scope 속성을 통해 해당 요소를 기준으로 다음 요소를 어느 순서로 읽어야하는지 지정할 수 있다. (row, col, rowgroup, colgroup)
