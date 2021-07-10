@@ -146,7 +146,7 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 ### nav
 - 페이지 네비게이션 콘텐츠를 나타내는 요소.
   - 내부 혹은 외부 문서에 연결되는 네비게이션 링크를 포함한다. (주로 a 태그와 함께 사용)
- ```
+ ```html
  <nav class="menu">
   <ul>
     <li><a href="#">Home</a></li>
@@ -204,7 +204,7 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 ### figure, figcation
   - figure: 삽화나 다이어그램, 사진 등과 같이 문서의 주요 흐름과는 독립적이지만 부연 설명을 위한 콘텐츠를 담는 요소.
      - figure 요소 내에 figcation 요소를 이용해서 부연 설명을 추가한다.
- ```
+ ```html
  <figure>
     <img src="/media/cc0-images/elephant-660-480.jpg"
          alt="Elephant at sunset">
@@ -356,3 +356,46 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 - td: 테이블 내의 각 데이트를 의미한다.
 - th: 데이터의 제목(header)를 의미한다.
    - scope 속성을 통해 해당 요소를 기준으로 다음 요소를 어느 순서로 읽어야하는지 지정할 수 있다. (row, col, rowgroup, colgroup)
+   
+
+## HTML Element - Forms
+
+### form
+유저가 입력하는 데이터를 입력받아 서버로 전송하기 위한 요소
+- `<input type="submit">`이나 `<input type="image">` 클릭하거나 인풋 필드에서 Enter 키 누르면 submit 이벤트가 발생한다.
+
+### input
+유저가 데이터를 입력하는 입력창을 나타내는 요소
+- type: button, checkbox, color, date, email, password, radio, submit 등 .. 
+
+### lable
+input에 대한 설명을 나타내는 요소
+- input과 연결된 label 클릭 시 해당 input 요소가 포커스된다.
+- input과 연결시키기 위해서 for 속성에 input의 id를 지정하거나 label 요소 내에 input 요소를 둔다.
+
+### fieldset
+form 내에서 그루핑하기 위한 요소
+- legend 요소로 fieldset의 제목(설명)을 나타낸다.
+```html
+<form>
+  <fieldset>
+    <legend>Choose your favorite monster</legend>
+
+    <input type="radio" id="kraken" name="monster">
+    <label for="kraken">Kraken</label><br/>
+
+    <input type="radio" id="sasquatch" name="monster">
+    <label for="sasquatch">Sasquatch</label><br/>
+
+    <input type="radio" id="mothman" name="monster">
+    <label for="mothman">Mothman</label>
+  </fieldset>
+</form>
+```
+
+### button
+유저가 클릭할 수 있는 버튼을 나타내는 요소
+- type: 기본적으로 submit 타입으로 form을 전송하기 위한 용도로 사용된다.
+  - button: 기본 동작 없이 주로 자바스크립트로 인터렉션을 다룬다.
+  - reset: input 데이터 초기화
+- disabled: 유저와의 인터렉션을 막는다.
