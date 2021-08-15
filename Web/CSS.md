@@ -13,4 +13,4 @@
 
 
 ## 참고
-- https://wit.nts-corp.com/2017/07/25/4675
+- [word-break 속성과 word-wrap 속성 알아보기](https://wit.nts-corp.com/2017/07/25/4675)
