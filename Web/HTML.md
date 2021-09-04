@@ -11,8 +11,7 @@
 <!-- HTML Living Standard 버전 -->
 <!DOCTYPE html>
 ```
-## HTML Content Model
-특정한 요소가 어떤 콘텐츠를 나타내는 지 보여주기 위한 모델
+## HTML Contents 종류
 
 ### Metadata content
 문서의 정보를 표현하거나 다른 문서와의 관계를 나타낸다.
@@ -58,6 +57,17 @@ section의 제목을 나타낼 때 사용하는 콘텐츠 모델
 - video (if the controls attribute is present)
 - input (if the type attribute is not in the Hidden state), label, select, textarea
 - button
+
+### Palpable content
+비어 있지 않은(텍스트나 볼 수 있거나 들을 수 있는 또는 인터렉션을 할 수 있는 자손을 갖고 있는) 요소를 나타내며 hidden 속성을 갖지 않는다.
+
+
+
+## Content model
+각 요소의 콘텐츠(자식 요소)에 대한 기술. HTML의 요소들은 각 요소의 content model에 정의된 콘텐츠를 담아야 한다.
+
+### Transparent Content model
+transparent하게 부모의 content model을 따른다.
 
 
 ## HTML Element - Document Metadata
