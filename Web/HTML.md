@@ -124,6 +124,7 @@ transparent하게 부모의 content model을 따른다.
 
 ### article & section
 - heading만으로 문서의 구조와 아웃라인을 표현하는데 한계가 있기 때문에 article, section과 같은 요소를 사용해서 구역을 명확하게 나눌 수 있다.
+    - 섹셔닝 요소는 개요(제목)에 대한 범위를 지정해주기 때문에 자식 요소로 헤딩 요소를 갖고 있지 않다면 어색한 섹션이 된다.
 - 독립적인 콘텐츠를 담고있는 경우 article을, 다른 콘텐츠와 연관이 있는 경우 section을 사용한다.
 
 ### header
