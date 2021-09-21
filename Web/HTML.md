@@ -271,12 +271,22 @@ transparent하게 부모의 content model을 따른다.
 ### img, [picture](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture)
 - 이미지를 불러올 때 사용하는 요소
 - picture 요소를 사용하여 브라우저 지원 범위에 따라 다양한 이미지 포맷을 사용할 수 있다.
-   - webp는 구글에서 제작한 이미지 포맷으로 jpeg보다 작은 용량을 갖고 투명도를 표현한다.
+   - 용량: jpg/png > webp > avif([지원범위](https://caniuse.com/?search=avif))
+   - type: 이미지의 타입(포멧) 지정. 브라우저가 해당 타입을 지원하지 않으면 스킵된다.
+   - medai: media 조건에 따라서 스킵된다.
+   - srcset: 크기(너비, 픽셀 밀도)에 기반하여 가능한 이미지들을 명시한다. 
 ```html
    <picture>
      <source type="im ge/svg+xml" srcset="pyramid.svg">
      <source type="image/webp" srcset="pyramid.webp">
      <img src="pyramid.png" alt="정삼각형 4개로 만든 일반적인 피라미드">
+   </picture>
+   
+   
+   <picture>
+     <source srcset="logo-768.png 768w, logo-768-1.5x.png 1.5x">
+     <source srcset="logo-480.png, logo-480-2x.png 2x">
+     <img src="logo-320.png" alt="logo">
    </picture>
 ```
 
