@@ -243,6 +243,7 @@ transparent하게 부모의 content model을 따른다.
  - target 속성을 통해 링크된 url을 표시할 위치를 결정한다.
     - `_self`: 현재 브라우징 맥락(탭, 윈도우 또는 iframe)에서 이동 (기본값)
     - `_blank`: 새로운 탭으로 이동 
+       - 열린 새창에서 `window.opener`를 통해 부모 창의 제어할 수 있으므로 rel 속성으로 `noopener` 또는 `onreferrer` 지정해야 함
 
 #### hash link
 같은 페이지 내에 해당 아이디를 가진 요소로 이동
@@ -273,7 +274,7 @@ transparent하게 부모의 content model을 따른다.
    - webp는 구글에서 제작한 이미지 포맷으로 jpeg보다 작은 용량을 갖고 투명도를 표현한다.
 ```html
    <picture>
-     <source type="image/svg+xml" srcset="pyramid.svg">
+     <source type="im ge/svg+xml" srcset="pyramid.svg">
      <source type="image/webp" srcset="pyramid.webp">
      <img src="pyramid.png" alt="정삼각형 4개로 만든 일반적인 피라미드">
    </picture>
@@ -411,3 +412,7 @@ form 내에서 그루핑하기 위한 요소
   - button: 기본 동작 없이 주로 자바스크립트로 인터렉션을 다룬다.
   - reset: input 데이터 초기화
 - disabled: 유저와의 인터렉션을 막는다.
+
+#### a vs button
+같은 외형이라도 a, button을 의미에 따라 구별해서 사용해야 함
+   - 실행 결과를 가리킬 url이 존재한다면 a 태그 아니면 button 태그를 사용한다.
