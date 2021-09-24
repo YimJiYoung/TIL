@@ -376,7 +376,7 @@ transparent하게 부모의 content model을 따른다.
 ### tr, th, td
 - tr: 테이블의 행(row)를 의미한다. 
    - td와 th 요소를 자식 요소로 사용 
-- td: 테이블 내의 각 데이트를 의미한다.
+- td: 테이블 내의 각 데이터를 의미한다.
 - th: 데이터의 제목(header)를 의미한다.
    - scope 속성을 통해 해당 요소를 기준으로 다음 요소를 어느 순서로 읽어야하는지 지정할 수 있다. (row, col, rowgroup, colgroup)
    
