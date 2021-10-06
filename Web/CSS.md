@@ -1,3 +1,8 @@
+# CSS
+
+## CSS 연산자 우선 순위 규칙
+`id` > `class, [attr], :class(pseudo-classes)` > `element, ::element(pseudo-elements)`
+
 ### word-break
 텍스트의 길이가 컨텐츠보다 커졌을 때 줄바꿈이 일어날 것인지 지정한다. 
 기본적으로 non-CJK(Chinese, Japanes, Korean) 언어의 경우는 공백 문자에서, CJK의 경우는 음절 사이에서 줄바꿈이 일어날 수 있다.
