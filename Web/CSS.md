@@ -29,6 +29,22 @@
 
 ### position
 
+#### static
+- 문서의 일반적인 흐름대로 배치되며 left, right, top, bottom, z-index 속성 효과 X
+
+#### relative
+- 문서의 일반적인 흐름대로 배치된 위치를 기준으로 베치된다.
+- 배치의 변경은 다른 요소의 위치에 영향을 미치지 않는다.
+- `inset` 속성으로 offset 관련 속성(left, right, top, bottom) 한번에 정의 가능
+
+#### absolute
+- 문서의 일반적인 흐름에서 완전히 이탈한다. (이 요소를 위한 공간이 따로 할당되지 않음)
+- `position: relative | absolute |fixed`인 부모 요소 또는 [컨테이닝 블록](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block) 기준으로 배치된다.
+
+#### fixed
+
+#### sticky
+
 ### word-break
 텍스트의 길이가 컨텐츠보다 커졌을 때 줄바꿈이 일어날 것인지 지정한다. 
 기본적으로 non-CJK(Chinese, Japanes, Korean) 언어의 경우는 공백 문자에서, CJK의 경우는 음절 사이에서 줄바꿈이 일어날 수 있다.
