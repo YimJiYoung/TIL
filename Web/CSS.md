@@ -42,8 +42,13 @@
 - `position: relative | absolute |fixed`인 부모 요소 또는 [컨테이닝 블록](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block) 기준으로 배치된다.
 
 #### fixed
-
+- 문서의 일반적인 흐름에서 완전히 이탈한다. (이 요소를 위한 공간이 따로 할당되지 않음)
+-  `transform`, `perspective`, `filter` 속성을 가진 부모 요소 또는 뷰포트를 기준으로 배치된다.
+ 
 #### sticky
+-  스크롤 포트(`overflow: hidden | scroll | auto | overlay`)를 기준으로 배치된다.
+-  컨테이닝 블록이 스크롤 포트에 보이는 동안 고정되었다가 스크롤 밖으로 이탈하거나 [sticky 요소가 컨테이닝 블록의 끝에 도달했을 때](https://stackoverflow.com/questions/49848196/position-sticky-not-working-when-height-is-defined) 고정을 멈춘다.
+
 
 ### word-break
 텍스트의 길이가 컨텐츠보다 커졌을 때 줄바꿈이 일어날 것인지 지정한다. 
