@@ -4,7 +4,7 @@
 `id` > `class, [attr], :class(pseudo-classes)` > `element, ::element(pseudo-elements)`
 
 ### display
-> `position: absolute | fixed`이거나 `float: left | right`일 때 `display`는 `block | flex | grid | table`이 된다. ([참고](https://developer.mozilla.org/en-US/docs/Web/CSS/float))
+> `position: absolute | fixed`이거나 `float: left | right`일 때 `display`는 `block`이 된다.
 
 #### inline
 - 흐름 방향 : 수평
@@ -74,6 +74,12 @@
 - 인접한 block 형제 요소 또는 부모/자식 요소(padding, border 없는 경우) 간의 수직 마진이 병합되는 현상. 
 - 양수/음수끼리 만난 경우 절대값이 큰 값 적용이 .
 - 양수와 음수가 만난 경우 두 값의 합이 적용된다.
+
+### float
+![image](https://user-images.githubusercontent.com/37496919/136690720-6a132ce0-fdca-410a-9cc4-0c71451d0d78.png)
+- 인라인 요소(텍스트 포함)이 플로팅 요소 주변으로 흐르게 한다. (블록 요소는 겹침)
+- 플로팅 요소의 height는 컨테이너 요소에 포함되지 않기 때문에 floaging 해제가 필요하다.
+   - `display: flow-root`
 
 ### word-break
 텍스트의 길이가 컨텐츠보다 커졌을 때 줄바꿈이 일어날 것인지 지정한다. 
