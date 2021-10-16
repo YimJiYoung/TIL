@@ -39,6 +39,24 @@
 
 ```
 
+> free space는 플렉스 아이템이 점유하는 영역(`flex-basis`, `width`, `height`, `padding`, `border`, `margin`)을 제외하고 남은 공간을 말한다.
+
+### flex grow
+- 양의 free space 발생 시 플렉스 아이템이 얼마나 공간을 할당받을 것인지(팽창할 것인지) 지정
+- 초기값 : 0, flex 속성에서 생략 시 1
+
+### flex shrink
+- 음의 free space 발생 시 플렉스 아이템이 얼마나 수축할 것인지 지정
+- 초기값 : 1, flex 속성에서 생략 시 1
+
+### flex basis
+- 아이템의 진행 방향의 기본 크기 지정
+- 초기값 : auto, flex 속성에서 생략 시 0
+
+### flex
+- `none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]`
+- `none`: 0 0 auto
+
 ### display
 > `position: absolute | fixed`이거나 `float: left | right`일 때 `display`는 `block`이 된다.
 
