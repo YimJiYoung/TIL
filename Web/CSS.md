@@ -3,6 +3,42 @@
 ## CSS 연산자 우선 순위 규칙
 `id` > `class, [attr], :class(pseudo-classes)` > `element, ::element(pseudo-elements)`
 
+## Flex 
+컨테이너 내 아이템의 배치를 크기, 정렬, 간격 등을 유동적으로 조절하여 레이아웃을 구성할 수 있다.
+- main axis: `flex-direction`에 의해 결정되며 flex 컨네이너 내의 아이템이 main axis에 따라 흐르며 배치된다.
+![image](https://css-tricks.com/wp-content/uploads/2018/11/00-basic-terminology.svg)
+
+### Flex Container 속성
+```css
+.flex-container {
+  display: flex;					/* 컨테이너 선언 */
+  flex-flow: row nowrap;       /* flex-direction + flex-wrap */
+  flex-direction: row;			/* 흐름 방향 */
+  flex-wrap: nowrap;			/* 줄 바꿈 */
+  justify-content: flex-start;		/* main axis 정렬 */
+  align-items: stretch;			/* cross axis 정렬 */
+  align-content: stretch;			/* 여러 줄의 cross axis 정렬 */
+  gap: 10px 20px; /* row-gap column gap */
+  row-gap: 10px;
+  column-gap: 20px;
+}
+```
+#### gap
+- 플렉스, 그리드, 다중 컬럼 아이템 사이의 간격을 지정한다.
+
+### Flex Item 속성
+```css
+.flex-item {
+  flex: 0 1 auto;          /*  flex-grow + flex-shrink + flex-basis */
+  flex-grow: 0;			/* 팽창지수 */
+  flex-shrink: 1;		/* 수축지수 */
+  flex-basis: auto;		/* 기준 크기 */
+  align-self: auto;		/* 독립적 cross axis 정렬 */
+  order: 0;				/* 배치 순서 */
+}
+
+```
+
 ### display
 > `position: absolute | fixed`이거나 `float: left | right`일 때 `display`는 `block`이 된다.
 
