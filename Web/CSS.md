@@ -57,6 +57,9 @@
 - `none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]`
 - `none`: 0 0 auto
 
+
+## CSS 
+
 ### display
 > `position: absolute | fixed`이거나 `float: left | right`일 때 `display`는 `block`이 된다.
 
@@ -145,9 +148,9 @@
   word-break: keep-all;
 }
 ```
+- 참고: [word-break 속성과 word-wrap 속성 알아보기](https://wit.nts-corp.com/2017/07/25/4675)
 
 
 
 
-## 참고
-- [word-break 속성과 word-wrap 속성 알아보기](https://wit.nts-corp.com/2017/07/25/4675)
+
