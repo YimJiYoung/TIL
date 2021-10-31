@@ -275,6 +275,8 @@ transparent하게 부모의 content model을 따른다.
    - type: 이미지의 타입(포멧) 지정. 브라우저가 해당 타입을 지원하지 않으면 스킵된다.
    - medai: media 조건에 따라서 스킵된다.
    - srcset: 크기(너비, 픽셀 밀도)에 기반하여 가능한 이미지들을 명시한다. 
+   - loading: `lazy`로 설정 시 유저가 이미지 가까이 스크롤한(뷰포트 높이의 1~2배 지점까지 근접한) 시점에 지연 로딩된다. (iframe에도 적용 가능)
+   - decoding: `async`로 설정 시 다른 컨텐츠의 표시가 지연되는 것을 막고 비동기적으로 이미지를 디코딩한다. ([참고](https://www.smashingmagazine.com/2021/04/humble-img-element-core-web-vitals/#image-decoding))
 ```html
    <picture>
      <source type="im ge/svg+xml" srcset="pyramid.svg">
