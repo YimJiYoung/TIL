@@ -3,6 +3,8 @@
 ## CSS 연산자 우선 순위 규칙
 `id` > `class, [attr], :class(pseudo-classes)` > `element, ::element(pseudo-elements)`
 
+<br/> 
+
 ## Flex 
 컨테이너 내 아이템의 배치를 크기, 정렬, 간격 등을 유동적으로 조절하여 레이아웃을 구성할 수 있다.
 - main axis: `flex-direction`에 의해 결정되며 flex 컨네이너 내의 아이템이 main axis에 따라 흐르며 배치된다.
@@ -57,8 +59,9 @@
 - `none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]`
 - `none`: 0 0 auto
 
+<br/> 
 
-## CSS 
+## CSS 속성
 
 ### display
 > `position: absolute | fixed`이거나 `float: left | right`일 때 `display`는 `block`이 된다.
@@ -127,7 +130,7 @@
 }
 ```
 
-### margin collapsing
+#### margin collapsing
 - 인접한 block 형제 요소 또는 부모/자식 요소(padding, border 없는 경우) 간의 수직 마진이 병합되는 현상. 
 - 양수/음수끼리 만난 경우 절대값이 큰 값 적용이 .
 - 양수와 음수가 만난 경우 두 값의 합이 적용된다.
