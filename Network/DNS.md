@@ -13,8 +13,12 @@ DNS 서버는 다음과 같은 계층 구조로 되어 있으며 URL의 각 파�
 - 예) `dnsimple.com`에 대해서 `com` TLD 서버의 주소 반환
 
 ### Top-level Servers
-특정 도메인(ex. com, io, net ...)에 대해 매핑해주는 DNS 서버이며 도메인에 맞는 Authoritative 서버 주소를 반환한다.
+특정 도메인(ex. com, io, net, org ...)에 대해 매핑해주는 DNS 서버이다. 각 도메인은 `mozilla.org`와 같은 특정 조직에 의해 사용되며, Top-level 도메인의 서버는 질의된 조직의 Authoritative 서버 주소를 반환한다.
 
 ### Authoritative Servers
+웹 사이트나 이메일 서버를 가진 조직은 호스트 네임을 IP 주소로 매핑하는 DNS 레코드를 가진다. Authoritative 서버에서 이런 레코드를 가지고 있으며 최종적으로 질의된 IP 주소를 반환하는 역할을 한다. (서브 도메인인 경우 제외)
+
+### Local DNS Cache
+- 웹사이트 접속 시 빈번한 DNS 룩업을 막고 빠르게 접속할 수 있도록 클라이언트에서 DNS 매핑이 캐시된다. (브라우저, OS local resolver library)
 
 ### Local DNS Servers(Resolver)
