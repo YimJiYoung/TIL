@@ -54,29 +54,3 @@ SOLID는 좋은 객체 지향 설계를 위한 규칙이며 가독성 좋고, �
 // HighLevelModule 내에서 new로 구현체를 직접 만들어 사용하면 안된다! 
 const highLevel = new HighLevelModule('data', new lowLevel());
 ```
-
-### 추상 클래스
-구현이 제공되지 않은 추상 메서드를 포함하는 클래스를 말하며 해당 클래스의 인스턴스는 생성할 수 없다.
-추상 클래스를 상속받는 자식 클래스에게 추상 메서드를 구현(오버라이딩)하도록 한다.
-- 아래와 같이 부모 클래스에 기본적인 알고리즘의 흐름을 구현하고 중간에 필요한 처리를 자식 클래스에게 위임하는 디자인 패턴을 TEMPLATE METHOD 패턴이라고 한다.
-```tsx
-abstract class DiscountPolicy {
-  private conditions: DiscountCondition[] = [];
-  
-  abstract getDiscountAmount(screening: Screening): number;
-  
-  constructor(...conditions: DiscountCondition[]) {
-    this.conditions = conditions;
-  }
- 
-  calculateDiscountAmount(screening: Screening) {
-    for (const condition of conditions) {
-      if(condition.isSatisfiedBy(screening)) {
-        return getDiscountAmount(screening);
-      }
-    }
-    
-    return 0;
-  }
-}
-```
