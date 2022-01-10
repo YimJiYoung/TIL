@@ -22,3 +22,8 @@ DNS 서버는 다음과 같은 계층 구조로 되어 있으며 URL의 각 파�
 - 웹사이트 접속 시 빈번한 DNS 룩업을 막고 빠르게 접속할 수 있도록 클라이언트에서 DNS 매핑이 캐시된다. (브라우저, OS local resolver library)
 
 ### Local DNS Servers(Resolver)
+클라이언트의 요청을 네임 서버로 전달하고 네임 서버로부터 IP 주소를 받아 클라이언트에게 제공하는 기능을 수행한다. 리졸버는 보통 ISP(Internet Service Provider)이다.
+![https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-lookup-diagram.png](https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-lookup-diagram.png)
+
+## 🔗 참고
+https://www.cloudflare.com/learning/dns/what-is-dns/
