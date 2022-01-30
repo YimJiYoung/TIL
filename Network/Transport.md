@@ -28,3 +28,18 @@
 
 ### Sequence Numbers
 전송 계층에서 각 세그먼트는 sequence number로 식별될 수 있다. sequence number는 세그먼트에 포함되어 전송된다.
+
+## [The User Datagram Protocol](https://datatracker.ietf.org/doc/pdf/rfc768.pdf)
+- IP 기반으로 동작하는 비연결성 프로토콜
+    - TCP와 같이 핸드쉐이킹을 통한 연결을 하지 않음
+- IP에 최소한의 기능(포트, 체크섬)만 더함
+
+### header & data
+- 출발지 port number : `2 Bytes`
+- 도착지 port number : `2 Bytes`
+- Length, 데이터그램의 길이(헤더 + 데이터) : `2 Bytes`
+- 체크섬 : `2 Bytes`
+- 데이터 : `65,528 bytes`
+   - 데이터그램의 가능한 길이가 Length 헤더에 의해 2의 16승인 65,536 bytes로 제한되므로 데이터의 크기는 헤더의 크기를 제외한 65,528 bytes
+  
+![image](https://user-images.githubusercontent.com/37496919/151689694-65168c98-7dea-467c-ad5c-bd76fdbeace9.png)
