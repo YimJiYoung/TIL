@@ -34,12 +34,20 @@
     - TCP와 같이 핸드쉐이킹을 통한 연결을 하지 않음
 - IP에 최소한의 기능(포트, 체크섬)만 더함
 
-### header & data
+### Header & Data
 - 출발지 port number : `2 Bytes`
 - 도착지 port number : `2 Bytes`
 - Length, 데이터그램의 길이(헤더 + 데이터) : `2 Bytes`
 - 체크섬 : `2 Bytes`
 - 데이터 : `65,528 bytes`
-   - 데이터그램의 가능한 길이가 Length 헤더에 의해 2의 16승인 65,536 bytes로 제한되므로 데이터의 크기는 헤더의 크기를 제외한 65,528 bytes
+   - 데이터그램의 가능한 길이가 Length 헤더에 의해 2^16인 65,536 bytes로 제한되므로 데이터의 크기는 헤더의 크기를 제외한 65,528 bytes
   
 ![image](https://user-images.githubusercontent.com/37496919/151689694-65168c98-7dea-467c-ad5c-bd76fdbeace9.png)
+
+## The Transmission Control Protocol
+- IP 기반으로 동작하는 연결지향 프로토콜
+- 네트워크 정체를 일으키지 않도록 데이터를 적절한 속도로 전송한다. (Congestion Control)
+- 애플리케이션 계층에서 전달받은 데이터를 적절한 크기의 세그먼트로 쪼갠다.
+- 수신자가 과부하되지 않도록 적절한 양의 데이터를 전송한다. (Flow Control)
+- 전달되지 않은 메세지를 식별하고 재전송한다.
+- 순서에 맞지 않은 메세지를 식별하고 재조합한다.
