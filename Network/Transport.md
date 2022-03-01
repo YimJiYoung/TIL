@@ -51,3 +51,23 @@
 - 수신자가 과부하되지 않도록 적절한 양의 데이터를 전송한다. (Flow Control)
 - 전달되지 않은 메세지를 식별하고 재전송한다.
 - 순서에 맞지 않은 메세지를 식별하고 재조합한다.
+
+### Header
+헤더의 크기는 `20~60Bytes`이다 
+- 출발지 port number : `2 Bytes`
+- 도착지 port number : `2 Bytes`
+- sequence number : `4 Bytes`. 데이터의 byte마다 sequence number를 갖는데 헤더의 sequence number는 첫 번째 byte를 의미한다.
+- acknowledgment number : `4 Bytes`. (송신자가 보낼, 수신자가 받을 것으로 기대되는) 다음 세그먼트의 seqnece number를 의미한다.
+    - acknowledgment number를 통해 세그먼트가 순서에서 벗어나거나 손실(missing)됐음을 알 수 있다.
+- flags: `8Bits`
+    - CWR, ECN, URG, ACK, PSH, RST, SYN, FIN
+    - CWR: Congestion Window reduced. 정체에 대응해서 window size를 줄인다.
+    - ECN: Explicit Congestion Notification. 정체가 발생했음을 알린다.
+    - URG: Urgent.
+    - ACK: 이전에 세그먼트를 수신했음을 인정(acknowledge)할 떄 ACK 플래그와 함께 적절한 acknowledgment number를 설정하여 보낸다. 
+    - PSH: Push. 버퍼의 내용 즉시 푸시하여 어플리케이션으로 전달.
+    - RST: 연결을 즉시 종료한다.
+    - SYN: 새로운 호스트와 연결을 시작한다.
+    - FIN: 호스트와의 연결을 종료한다.
+<img width="412" alt="image" src="https://user-images.githubusercontent.com/37496919/156108275-c7edd997-7154-4cc0-b10e-b3b3f256f82f.png">
+
