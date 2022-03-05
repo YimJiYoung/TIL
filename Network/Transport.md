@@ -69,5 +69,17 @@
     - RST: 연결을 즉시 종료한다.
     - SYN: 새로운 호스트와 연결을 시작한다.
     - FIN: 호스트와의 연결을 종료한다.
+- window size: `2Bits`
+    - 데이터를 받는 쪽에서 받는 데이터를 즉시 애플레케이션 계층에 넘기지 않고 버퍼에 저장해두는데, 이 버퍼의 사용가능한 크기를 의미한다.
+    - TCP 메세지를 수신하는 쪽에서 송신하는 쪽에 윈도우 크기를 전달하여 송진자의 버퍼 상태를 알리고 보낼 데이터의 양을 조절하도록 한다.
+- 체크섬 : `2 Bytes`
 <img width="412" alt="image" src="https://user-images.githubusercontent.com/37496919/156108275-c7edd997-7154-4cc0-b10e-b3b3f256f82f.png">
+
+### Connection Establishment: Three-way Handshake
+1. 클라이언트는 TCP 연결을 시작하기 위해 서버에게 SYN 플래그와 랜덤으로 초기화된 sequence number와 함께 TCP 세그먼트를 송신한다. (SYN)
+2. SYN 세그먼트를 받으면 서버는 SYN 플래그와 마찬가지로 랜덤으로 초기화된 sequence number와 ACK 플래그, SYN 세그먼트의 sequence number + 1(정학히는 mod 2의 32승한 값)을 acknowledgment number로 설정한 세그먼트로 응답한다. (SYN+ACK)
+3. SYN+ACK 세그먼트를 받으면 클라이언트는 ACK 플래그와 SYN+ACK 세그먼트의 sequence number + 1한 값(마찬가지로 mod 2의 32승한 값)을 ackonwledgement number로 설정하여 송신한다.
+
+#### 연결 거부할 때
+SYN 세그먼트를 받았지만 더이상 사용 가능한 리소스가 없거나 보안상의 이유로 연결을 거부할 수 있다. 이때 RST 플래그가 설정된 세그먼트로 응답한다.
 
