@@ -84,7 +84,7 @@
 2. SYN 세그먼트를 받으면 서버는 SYN 플래그와 마찬가지로 랜덤으로 초기화된 sequence number와 ACK 플래그, SYN 세그먼트의 sequence number + 1(정학히는 mod 2의 32승한 값)을 acknowledgment number로 설정한 세그먼트로 응답한다. (SYN+ACK)
 3. SYN+ACK 세그먼트를 받으면 클라이언트는 ACK 플래그와 SYN+ACK 세그먼트의 sequence number + 1한 값(마찬가지로 mod 2의 32승한 값)을 ackonwledgement number로 설정하여 송신한다.
 
-#### 연결 거부할 때
+#### 연결 거부
 SYN 세그먼트를 받았지만 더이상 사용 가능한 리소스가 없거나 보안상의 이유로 연결을 거부할 수 있다. 이때 RST 플래그가 설정된 세그먼트로 응답한다.
 
 #### SYN flood attack
@@ -92,4 +92,20 @@ TCP 연결이 생성될 때 TCB(Transmission Control Block)를 만들어 local/r
 
 #### [SYN Cookies](https://en.wikipedia.org/wiki/SYN_cookies)
 이런 SYN flood attack을 막기 위해 유효한 ACK 세그먼트를 받을때까지 TCB가 생성되지 않도록 했다. 대신 ACK 세그먼트(의 acknowledgement number)를 검증하기 위해 클라이언트의 SYN 세그먼트의 정보와 서버 쪽의 정보를 이용해서 초기 sequence number를 계산하는 SYN cookies를 사용한다.
+
+### Connection Release
+
+#### Abrupt Connection Release
+어느 한 쪽이 양방향 데이터 전송을 종료하거나 연결이 강제로 종료되는 경우 (RST 세그먼트 이용)
+- 존재하지 않는 TCP 연결에 대해 non-SYN 세그먼트를 받은 경우
+- 유효하지 않은 헤더를 가진 세그먼트를 받은 경우
+- 연결을 지원하기 위한 리소스 부족 등의 이유로 연결을 종료해야하는 경우
+등등이 있다.
+
+#### Graceful Connection Release 
+양쪽이 연결을 종료하기 전까지 연결이 종료되지 않는 일반적인 경우
+
+![image](https://user-images.githubusercontent.com/37496919/157606472-6f3f8d9f-590c-4b52-8de7-138a71e62615.png)
+
+
 
