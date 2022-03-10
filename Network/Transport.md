@@ -29,6 +29,8 @@
 ### Sequence Numbers
 전송 계층에서 각 세그먼트는 sequence number로 식별될 수 있다. sequence number는 세그먼트에 포함되어 전송된다.
 
+<br />
+
 ## [The User Datagram Protocol](https://datatracker.ietf.org/doc/pdf/rfc768.pdf)
 - IP 기반으로 동작하는 비연결성 프로토콜
     - TCP와 같이 핸드쉐이킹을 통한 연결을 하지 않음
@@ -43,6 +45,8 @@
    - 데이터그램의 가능한 길이가 Length 헤더에 의해 2^16인 65,536 bytes로 제한되므로 데이터의 크기는 헤더의 크기를 제외한 65,528 bytes
   
 ![image](https://user-images.githubusercontent.com/37496919/151689694-65168c98-7dea-467c-ad5c-bd76fdbeace9.png)
+
+<br />
 
 ## The Transmission Control Protocol
 - IP 기반으로 동작하는 연결지향 프로토콜
@@ -82,4 +86,10 @@
 
 #### 연결 거부할 때
 SYN 세그먼트를 받았지만 더이상 사용 가능한 리소스가 없거나 보안상의 이유로 연결을 거부할 수 있다. 이때 RST 플래그가 설정된 세그먼트로 응답한다.
+
+#### SYN flood attack
+TCP 연결이 생성될 때 TCB(Transmission Control Block)를 만들어 local/remote sequence IP 주소, 포트, sequence number 등의 정보를 저장한다. 1990년대 중반까지는 TCB로 메모리가 오버플로우되는 것을 막기 위해 SYN RCVD 상태의 반-연결된 TCP 연결의 개수를 제한했다. 이런 점을 이용하여 서버에 제한된 개수만큼의 SYN 세그먼트를 보내고 서버로부터 받은 SYN+ACK 세그먼트에 응답하지 않는 방식으로 서버가 더이상 TCP 연결을 할 수 없도록 만들어 Dos 공격을 할 수 있었다.
+
+#### [SYN Cookies](https://en.wikipedia.org/wiki/SYN_cookies)
+이런 SYN flood attack을 막기 위해 유효한 ACK 세그먼트를 받을때까지 TCB가 생성되지 않도록 했다. 대신 ACK 세그먼트(의 acknowledgement number)를 검증하기 위해 클라이언트의 SYN 세그먼트의 정보와 서버 쪽의 정보를 이용해서 초기 sequence number를 계산하는 SYN cookies를 사용한다.
 
