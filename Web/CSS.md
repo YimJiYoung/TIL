@@ -4,10 +4,13 @@
 `id` > `class, [attr], :class(pseudo-classes)` > `element, ::element(pseudo-elements)`
 
 <br/> 
+
 ## Inheritance
 `color`와 같이 상속 가능한 속성은 값을 지정해주지 않았을 떄 부모 요소의 해당 속성 값을 사용한다.
 
 - 참고: [상속 가능한 CSS 속성 리스트](https://www.sitepoint.com/css-inheritance-introduction/#list-css-properties-inherit)
+
+<br/> 
 
 ## Flex 
 컨테이너 내 아이템의 배치를 크기, 정렬, 간격 등을 유동적으로 조절하여 레이아웃을 구성할 수 있다.
