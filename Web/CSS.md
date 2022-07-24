@@ -136,6 +136,8 @@
   top: 0;
 }
 ```
+- margin을 음수로 설정하여 원래의 위치보다 sibling 요소에 가까워진다거나 부모 요소를 벗어나게 위치할 수 있다.
+   - absoulte position와 달리 음수 margin은 sibling 요소들의 위치에도 영향을 미친다.
 
 #### margin collapsing
 - 인접한 block 형제 요소 또는 부모/자식 요소(padding, border 없는 경우) 간의 수직 마진이 병합되는 현상. 
