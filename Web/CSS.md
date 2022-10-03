@@ -39,13 +39,12 @@
 
 #### margin collapsing
 - 인접한 block 형제 요소 또는 부모/자식 요소(padding, border 없는 경우) 간의 수직 마진이 병합되는 현상. 
-- 양수/음수끼리 만난 경우 절대값이 큰 값 적용이 .
+- 양수/음수끼리 만난 경우 절대값이 큰 값 적용이 된다.
 - 양수와 음수가 만난 경우 두 값의 합이 적용된다.
 
 <br />
 
 ## FLow Layout
-
 
 ### display
 > `position: absolute | fixed`이거나 `float: left | right`일 때 `display`는 `block`이 된다.
@@ -53,6 +52,7 @@
 #### inline
 - 흐름 방향 : 수평
 - width, height, 수직 마진 적용 X / 수평 마진, 패딩 적용 O (수직 패딩도 적용되긴 하지만 중첩됨)
+- img 감싼 block에 이상한 spacing이 생긴다 ? → img는 inline 요소이기 때문에 브라우저가 텍스트로 인식하여 line-height 속성에 맞게 여백이 추가한다.
 
 #### block
 - 흐름 방향: 수직
@@ -64,6 +64,17 @@
 
 #### none
 - 레이아웃에서 제외되며 어떤 보조 장치에서도 접근할 수 없다. (접근성 주의!)
+
+### width
+- min-conent: 컨텐츠의 최소 크기
+- max-content: 컨텐츠의 최대 크기 (no line break)
+- fit-content: max-content와 같이 동작하지만 넘치게 될 경우 auto와 같이 동작하며 필요한 경우 line break를 삽입하여 넘치지 않도록 한다.
+```caa
+/* width: fit-content 적용한 것과 동일 */
+    width: auto;
+    min-width: min-content;
+    max-width: max-content;
+```
 
 <br />
 
