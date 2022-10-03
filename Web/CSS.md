@@ -10,7 +10,7 @@
 
 - 참고: [상속 가능한 CSS 속성 리스트](https://www.sitepoint.com/css-inheritance-introduction/#list-css-properties-inherit)
 
-
+<br/> 
 
 ## Box Model
 
