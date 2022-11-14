@@ -169,6 +169,22 @@
 
 <br/> 
 
+## Overflow
+- visible: 넘친 컨텐츠가 padding box 영역 바깥까지 렌더링된다.
+- scroll: 넘친 컨텐츠는 잘리며 항상 스크롤바가 노출된다.
+- auto: 컨텐츠가 넘쳤을 때만 스크롤바를 노출한다.
+- hidden: 넘친 컨텐츠는 잘리며 스크롤바가 노출되지 않는다. 그러나 프로그래밍적으로 스크롤이 가능하며 스크롤 컨테이너이다.
+- clip: hidden과 같이 넘친 컨텐츠가 잘리지만 스크롤 컨테이너가 아니다.
+
+### Scroll Container
+스크롤 컨테이너 내의 자식 요소들은 컨테이너에 바깥 영역으로 벗어날 수 없다.
+overflow-x나 overflow-y 둘 중 하나만 scroll/hidden/auto로 설정한다 하더라도 한 방향으로만 스크롤 가능한 컨테이너는 없다.
+`overflow-x: visible;overflow-y: hidden;`이 적용되지 않는 이유가 바로 이것이다.
+overflow-x와 overflow-y는 한 축으로는 스크롤 가능하게 하고 다른 한 축으로는 hidden으로 설정하기 위한 용도로 있다.
+👉 한 방향으로만 잘리게 하고 싶다면 clip을 사용해보자 ([그러나 아직 지원범위가 .. ](https://caniuse.com/mdn-css_properties_overflow_clip))
+
+<br/> 
+
 ## 그외 CSS 속성
 
 #### flow-root
