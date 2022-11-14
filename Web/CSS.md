@@ -180,7 +180,7 @@
 스크롤 컨테이너 내의 자식 요소들은 컨테이너에 바깥 영역으로 벗어날 수 없다.
 overflow-x나 overflow-y 둘 중 하나만 scroll/hidden/auto로 설정한다 하더라도 한 방향으로만 스크롤 가능한 컨테이너는 없다.
 `overflow-x: visible;overflow-y: hidden;`이 적용되지 않는 이유가 바로 이것이다.
-overflow-x와 overflow-y는 한 축으로는 스크롤 가능하게 하고 다른 한 축으로는 hidden으로 설정하기 위한 용도로 있다.
+overflow-x와 overflow-y는 한 축으로는 스크롤 가능하게 하고 다른 한 축으로는 hidden으로 설정하기 위한 용도로 있다. <br/> 
 👉 한 방향으로만 잘리게 하고 싶다면 clip을 사용해보자 ([그러나 아직 지원범위가 .. ](https://caniuse.com/mdn-css_properties_overflow_clip))
 
 <br/> 
