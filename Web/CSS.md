@@ -92,7 +92,7 @@
 
 #### absolute
 - 문서의 일반적인 흐름에서 완전히 이탈한다. (이 요소를 위한 공간이 따로 할당되지 않음)
-- `position: relative | absolute |fixed`인 부모 요소 또는 [컨테이닝 블록](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block) 기준으로 배치된다.
+- `position: relative | absolute | fixed sticky`인 부모 요소 기준으로 배치된다.
 
 #### fixed
 - 문서의 일반적인 흐름에서 완전히 이탈한다. (이 요소를 위한 공간이 따로 할당되지 않음)
