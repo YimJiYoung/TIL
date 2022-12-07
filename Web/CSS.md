@@ -165,7 +165,7 @@
 - flow layout에서는 부모 요소의 content box
 - absolute layout에서는 relative/absolute/fixed/sticky 포지션을 가진 가장 가까운 조상 요소의 padding box
 - fixed layout에서는 viewport
-  - 하지만 조상 중에 transform 프로퍼티를 가진 경우 해당 요소가 containing block이 된다
+  - 하지만 조상 중에 transform, will-change 등의 프로퍼티를 가진 경우 해당 요소가 containing block이 된다
 
 <br/> 
 
