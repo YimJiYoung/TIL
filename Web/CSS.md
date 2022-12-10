@@ -6,7 +6,7 @@
 <br/> 
 
 ## Inheritance
-`color`와 같이 상속 가능한 속성은 값을 지정해주지 않았을 떄 부모 요소의 해당 속성 값을 사용한다.
+`color`와 같이 상속 가능한 속성은 값을 지정해주지 않았을 때 부모 요소의 해당 속성 값을 사용한다.
 
 - 참고: [상속 가능한 CSS 속성 리스트](https://www.sitepoint.com/css-inheritance-introduction/#list-css-properties-inherit)
 
