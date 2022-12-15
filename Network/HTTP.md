@@ -1,6 +1,6 @@
 # HTTP
 
-### URL(Universal Resource Locator)
+### [URL(Universal Resource Locator)](https://www.rfc-editor.org/rfc/rfc3986)
 네트워크 상에서 자원의 위치를 나타내는 주소
 - protocol/domain name(+port)/path(리소스 위치)/query/fragment로 구성된다.
 ```
