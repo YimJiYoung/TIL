@@ -17,7 +17,7 @@
     // Constructor { name: 'first' } Constructor { name: 'second' }
     ```
 
-2. **apply, call, bind가 함수 호출 시 사용되면, `this` 는 apply, call, bind의 parameter로 넘겨진 객체를 가르킨다.**
+2. **apply, call, bind가 함수 호출 시 사용되면, `this` 는 apply, call, bind의 parameter로 넘겨진 객체를 가리킨다.**
 
     ```jsx
     function fn() {
