@@ -15,7 +15,7 @@
 - UDP를 사용하는 프로토콜: Domain Name System (DNS), live video streaming, and Voice over IP (VoIP).
 
 ## 네트워크 계층의 한계
-1. 페킷은 전송 오류로 인해 corrupt될 수 있다 → checksum
+1. 페킷은 전송 오류로 인해 훼손될 수 있다 → checksum
 2. 패킷은 중간에 유실될 수 있다 → retrasmission timer
 3. 패킷은 순서가 바뀌거나 중복해서 올 수 있다 → sequence number
 
@@ -75,7 +75,7 @@
     - FIN: 호스트와의 연결을 종료한다.
 - window size: `2Bits`
     - 데이터를 받는 쪽에서 받는 데이터를 즉시 애플레케이션 계층에 넘기지 않고 버퍼에 저장해두는데, 이 버퍼의 사용가능한 크기를 의미한다.
-    - TCP 메세지를 수신하는 쪽에서 송신하는 쪽에 윈도우 크기를 전달하여 송진자의 버퍼 상태를 알리고 보낼 데이터의 양을 조절하도록 한다.
+    - TCP 메세지를 수신하는 쪽에서 송신하는 쪽에 윈도우 크기를 전달하여 송신자의 버퍼 상태를 알리고 보낼 데이터의 양을 조절하도록 한다.
 - 체크섬 : `2 Bytes`
 <img width="412" alt="image" src="https://user-images.githubusercontent.com/37496919/156108275-c7edd997-7154-4cc0-b10e-b3b3f256f82f.png">
 
