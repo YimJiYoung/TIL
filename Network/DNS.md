@@ -25,5 +25,16 @@ DNS 서버는 다음과 같은 계층 구조로 되어 있으며 URL의 각 파�
 클라이언트의 요청을 네임 서버로 전달하고 네임 서버로부터 IP 주소를 받아 클라이언트에게 제공하는 기능을 수행한다. 리졸버는 보통 ISP(Internet Service Provider)이다.
 ![https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-lookup-diagram.png](https://www.cloudflare.com/img/learning/dns/what-is-dns/dns-lookup-diagram.png)
 
+## DNS 레코드
+authoritative DNS 서버 내에 존재하며 어떤 IP가 도메인과 연관됐는지, 도메인에 대한 요청을 어떻게 처리해야하는지에 대한 도메인 정보를 담고 있다. 모든 DNS 레코드는 TTL을 가진다. 이는 DNS 서버가 해당 래코드를 얼마나 자주 리프레시할 지를 나타낸다.
+
+### A / AAAA 레코드
+A는 "address"를 나타내며 가장 기본적인 DNS 레코드 타입으로 주어진 도메인에 대한 IP 주소를 갖는 레코드이다.
+A는 IPv4 주소를 포함하고, AAAA 레코드는 IPv6 주소를 포함한다.
+
+### CNAME 레코드
+하나의 도메인이나 하위 도메인을 다른 도메인으로 포워딩한다. CNAME 레코드는 A 레코드와는 다르게 IP 주소가 아닌 도메인을 가리킨다.
+
+
 ## 🔗 참고
 https://www.cloudflare.com/learning/dns/what-is-dns/
