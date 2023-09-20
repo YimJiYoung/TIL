@@ -99,8 +99,8 @@
 -  `transform`, `perspective`, `filter` 속성을 가진 부모 요소 또는 뷰포트를 기준으로 배치된다.
  
 #### sticky
--  스크롤 포트(`overflow: hidden | scroll | auto | overlay`)를 기준으로 배치된다.
--  컨테이닝 블록이 스크롤 포트에 보이는 동안 고정되었다가 스크롤 밖으로 이탈하거나 [sticky 요소가 컨테이닝 블록의 끝에 도달했을 때](https://stackoverflow.com/questions/49848196/position-sticky-not-working-when-height-is-defined) 고정을 멈춘다.
+-  조상 중의 가장 가까운 스크롤 컨테이너를 기준으로 배치된다.
+-  컨테이닝 블록이 스크롤 컨테이너에 보이는 동안 고정되었다가 스크롤 밖으로 이탈하거나 [sticky 요소가 컨테이닝 블록의 끝에 도달했을 때](https://stackoverflow.com/questions/49848196/position-sticky-not-working-when-height-is-defined) 고정을 멈춘다.
 
 <br />
 
