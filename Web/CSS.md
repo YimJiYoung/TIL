@@ -162,6 +162,7 @@
 <br/> 
 
 ## [Containing Block](https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block)
+요소의 사이즈나 크기는 컨테이닝 블록에 영향을 받는 경우가 많다. `width`, `height`, `padding` 등에 적용되는 퍼센트 값이나 absolute 포지션을 가진 요소의 오프셋 프로퍼티들은 컨테이닝 블록 요소에 의해 계산된다.
 - flow layout에서는 부모 요소의 content box
 - absolute layout에서는 relative/absolute/fixed/sticky 포지션을 가진 가장 가까운 조상 요소의 padding box
 - fixed layout에서는 viewport
